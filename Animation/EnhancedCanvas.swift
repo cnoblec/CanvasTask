@@ -41,7 +41,7 @@ public class EnhancedCanvas : Canvas {
         if system.animationPosition == 0 {
             
             // Change the line length
-            system.currentLength = Float( Double(system.initialLength) / pow(Double(system.reduction), Double(generation)) )
+            system.currentLength = Float(Double(system.initialLength) / pow(Double(system.reduction), Double(generation)) )
 
             // Move turtle to starting point
             self.translate(byX: system.x, byY: system.y) // Move turtle to starting point
@@ -69,23 +69,41 @@ public class EnhancedCanvas : Canvas {
     func interpret(character : Character, forThis system : VisualizedLindenmayerSystem) {
         
         // Interpret each character of the word
+        let unicodeScalar = String(character).unicodeScalars
+    
         switch character {
-        case "F":
-            // Go forward while drawing a line
-            self.drawLine(fromX: 0, fromY: 0, toX: system.currentLength, toY: 0)
-            self.translate(byX: system.currentLength, byY: 0)
-        case "f":
-            // Go forward without drawing a line
-            self.translate(byX: system.currentLength, byY: 0)
         case "+":
             // Turn left
             self.rotate(by: system.angle)
         case "-":
             // Turn right
             self.rotate(by: system.angle * -1)
+        case "1":
+            let newColor = system.colours["1"]
+            self.lineColor = Color(hue: (newColor?.hue)!, saturation: (newColor?.saturation)!, brightness: (newColor?.brightness)!, alpha: 100)
+        case "2":
+            let newColor = system.colours["2"]
+            self.lineColor = Color(hue: (newColor?.hue)!, saturation: (newColor?.saturation)!, brightness: (newColor?.brightness)!, alpha: 100)
+        case "3":
+            let newColor = system.colours["3"]
+            self.lineColor = Color(hue: (newColor?.hue)!, saturation: (newColor?.saturation)!, brightness: (newColor?.brightness)!, alpha: 100)
+        case "4":
+            let newColor = system.colours["4"]
+            self.lineColor = Color(hue: (newColor?.hue)!, saturation: (newColor?.saturation)!, brightness: (newColor?.brightness)!, alpha: 100)
+        case "[":
+            self.saveState()
+        case "]":
+            self.restoreState()
         default:
             // Do nothing for any another character in the word
-            break
+            if unicodeScalar[unicodeScalar.startIndex].value >= 65 && unicodeScalar[unicodeScalar.startIndex].value <= 90
+            {
+                self.drawLine(fromX: 0, fromY: 0, toX: system.currentLength, toY: 0)
+                self.translate(byX: system.currentLength, byY: 0)
+            }
+            if unicodeScalar[unicodeScalar.startIndex].value >= 97 && unicodeScalar[unicodeScalar.startIndex].value <= 122 {
+                self.translate(byX: system.currentLength, byY: 0)
+            }
         }
 
     }

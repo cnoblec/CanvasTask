@@ -46,6 +46,10 @@ let kochIsland = LindenmayerSystem(length: 100,
                                    generations: 2)
 
 // Render the system
+var character  = "A"
+var val = character.unicodeScalars
+
+print(val[val.startIndex].value)
 canvas.render(system: kochIsland)
 /*:
  
