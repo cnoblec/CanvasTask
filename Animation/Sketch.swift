@@ -126,9 +126,9 @@ class Sketch : NSObject {
         // The frame rate can be adjusted; the default is 60 fps
         canvas.framesPerSecond = 120
         
-        square = LindenmayerSystem(angle: 90, axiom: "F",rules: ["F":"F[X]F","X":"+f-F"], generations: 7)
+        square = LindenmayerSystem(angle: 90, axiom: "F",rules: ["F":"F+F-F-F+F","X":"+f-F"], generations: 2)
         
-        vissquare = VisualizedLindenmayerSystem(with: square, length: 400, reduction: 3, x: 50, y: 50, direction: 0, colours: ["1":Colour(hue: 240, saturation: 80, brightness: 90)])
+        vissquare = VisualizedLindenmayerSystem(with: square, length: 400, reduction: 4, x: 50, y: 50, direction: 0, colours: ["1":Colour(hue: 240, saturation: 80, brightness: 90)])
         canvas.render(system: vissquare, generation: 2)
     }
     
