@@ -4,14 +4,14 @@ public class LindenmayerSystem {
     // Set up required information
     var angle : Degrees                 // rotation amount for turtle (degrees)
     var axiom : String
-    var rules : [Character : String]
+    var rules : [Character : [String]]
     var n : Int                         // number of times the production rule is applied
     var word : [String] = []            // the word that will be rendered
-                                        // is rendered with an animation, step by step
+    // is rendered with an animation, step by step
     
     public init(angle : Degrees,
                 axiom : String,
-                rules : [Character : String],
+                rules : [Character : [String]],
                 generations : Int) {
         
         // Initialize stored properties
@@ -53,18 +53,18 @@ public class LindenmayerSystem {
                 // Inspect each character of existing word
                 for character in word[i - 1].characters {
                     
-//                    for (key, rule) in rules
-//                    {
-//                        if character == Character(key)
-//                        {
-//                            newWord.append(rule)
-//                        }
-//                    }
-//                    
-//                    if String(character) == "+" || String(character) == "-" || String(character) == "[" || String(character) == "]"
-//                    {
-//                        newWord.append(character)
-//                    }
+                    //                    for (key, rule) in rules
+                    //                    {
+                    //                        if character == Character(key)
+                    //                        {
+                    //                            newWord.append(rule)
+                    //                        }
+                    //                    }
+                    //
+                    //                    if String(character) == "+" || String(character) == "-" || String(character) == "[" || String(character) == "]"
+                    //                    {
+                    //                        newWord.append(character)
+                    //                    }
                     let unicodeScalar = String(character).unicodeScalars
                     switch character {
                     case "+", "-", "[", "]":
@@ -73,11 +73,16 @@ public class LindenmayerSystem {
                         if unicodeScalar[unicodeScalar.startIndex].value >= 65 && unicodeScalar[unicodeScalar.startIndex].value <= 90 || unicodeScalar[unicodeScalar.startIndex].value >= 97 && unicodeScalar[unicodeScalar.startIndex].value <= 122
                         {
                             if let successor = rules[character] {
-                                newWord.append(successor)
+                                if successor.count > 1
+                                {
+                                    newWord.append(randSuccesor(rules: successor))
+                                } else {
+                                    newWord.append(successor[0])
+                                }
                             }
                         }
                     }
-                        // just copy what's in the existing word to the new word
+                    // just copy what's in the existing word to the new word
                 }
                 
                 // Add the re-written word to the system

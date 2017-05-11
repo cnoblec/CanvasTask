@@ -101,11 +101,10 @@ public class EnhancedCanvas : Canvas {
                 self.drawLine(fromX: 0, fromY: 0, toX: system.currentLength, toY: 0)
                 self.translate(byX: system.currentLength, byY: 0)
             }
-            if unicodeScalar[unicodeScalar.startIndex].value >= 97 && unicodeScalar[unicodeScalar.startIndex].value <= 122 {
+            if unicodeScalar[unicodeScalar.startIndex].value >= 97 && unicodeScalar[unicodeScalar.startIndex].value <= 122
+            {
                 self.translate(byX: system.currentLength, byY: 0)
             }
         }
-
     }
-    
 }

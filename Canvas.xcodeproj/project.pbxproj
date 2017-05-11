@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3F175EFE1EBA526A00DC7884 /* Colour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F175EFD1EBA526A00DC7884 /* Colour.swift */; };
+		3FE33D1C1EBD0EC000148233 /* Probability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE33D1B1EBD0EC000148233 /* Probability.swift */; };
 		81064A0A1C130A10007ED524 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81064A091C130A10007ED524 /* AppDelegate.swift */; };
 		81064A0C1C130A10007ED524 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81064A0B1C130A10007ED524 /* ViewController.swift */; };
 		81064A0E1C130A10007ED524 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81064A0D1C130A10007ED524 /* Assets.xcassets */; };
@@ -21,6 +22,8 @@
 
 /* Begin PBXFileReference section */
 		3F175EFD1EBA526A00DC7884 /* Colour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colour.swift; sourceTree = "<group>"; };
+		3FA8BAF71EC3942B009D1123 /* MultiRuleTest.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MultiRuleTest.playground; sourceTree = "<group>"; };
+		3FE33D1B1EBD0EC000148233 /* Probability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Probability.swift; sourceTree = "<group>"; };
 		81064A061C130A10007ED524 /* Canvas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Canvas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81064A091C130A10007ED524 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81064A0B1C130A10007ED524 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +52,7 @@
 		810649FD1C130A10007ED524 = {
 			isa = PBXGroup;
 			children = (
+				3FA8BAF71EC3942B009D1123 /* MultiRuleTest.playground */,
 				8134E7921C14CD5700EC4523 /* CanvasTestArea.playground */,
 				81064A081C130A10007ED524 /* Canvas */,
 				81064A071C130A10007ED524 /* Products */,
@@ -80,6 +84,7 @@
 				81F1943B1EABB91100832CA6 /* LindenmayerSystem.swift */,
 				81678C531EBA34D3006FB3B9 /* VisualizedLindenmayerSystem.swift */,
 				3F175EFD1EBA526A00DC7884 /* Colour.swift */,
+				3FE33D1B1EBD0EC000148233 /* Probability.swift */,
 				81EAC5A31D87DF52005DD91D /* Helper.swift */,
 				81064A091C130A10007ED524 /* AppDelegate.swift */,
 				81064A0B1C130A10007ED524 /* ViewController.swift */,
@@ -169,6 +174,7 @@
 				81F1943C1EABB91100832CA6 /* EnhancedCanvas.swift in Sources */,
 				81064A1C1C132DA2007ED524 /* Sketch.swift in Sources */,
 				81064A0A1C130A10007ED524 /* AppDelegate.swift in Sources */,
+				3FE33D1C1EBD0EC000148233 /* Probability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
