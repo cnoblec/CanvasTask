@@ -14,10 +14,39 @@ public struct probabilities
     var successor : [String]
 }
 
-func randSuccesor(rules: [String]) -> String
+func randSuccesor(successors: [String]) -> String
 {
+    var probArray :[Int] = []
+    var addativeArray : [Int] = []
+    var max : Int = 0
+    var keyArray : [String] = []
+    for successor in successors
+    {
+        let components = successor.components(separatedBy: "/")
+        if let IntofString = Int(components[0])
+        {
+        probArray.append(IntofString)
+        }
+        keyArray.append(components[1])
+    }
     
-    let random = Int(arc4random_uniform(UInt32((rules.count))))
+    for i in probArray
+    {
+        max += i
+        addativeArray.append(max)
+    }
     
-    return rules[random]
+    let random = Int(arc4random_uniform(UInt32(max+1)))
+    var c = 0
+    for i in addativeArray
+    {
+        
+        if random <= i
+        {
+            break
+        }
+        c += 1
+    }
+    
+    return successors[c]
 }

@@ -53,18 +53,7 @@ public class LindenmayerSystem {
                 // Inspect each character of existing word
                 for character in word[i - 1].characters {
                     
-                    //                    for (key, rule) in rules
-                    //                    {
-                    //                        if character == Character(key)
-                    //                        {
-                    //                            newWord.append(rule)
-                    //                        }
-                    //                    }
-                    //
-                    //                    if String(character) == "+" || String(character) == "-" || String(character) == "[" || String(character) == "]"
-                    //                    {
-                    //                        newWord.append(character)
-                    //                    }
+                 
                     let unicodeScalar = String(character).unicodeScalars
                     switch character {
                     case "+", "-", "[", "]":
@@ -75,7 +64,7 @@ public class LindenmayerSystem {
                             if let successor = rules[character] {
                                 if successor.count > 1
                                 {
-                                    newWord.append(randSuccesor(rules: successor))
+                                    newWord.append(randSuccesor(successors: successor))
                                 } else {
                                     newWord.append(successor[0])
                                 }

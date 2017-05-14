@@ -45,6 +45,8 @@ public class EnhancedCanvas : Canvas {
 
             // Move turtle to starting point
             self.translate(byX: system.x, byY: system.y) // Move turtle to starting point
+            
+            self.rotate(by: Degrees(system.direction))
         }
         
         // Don't run past end of the word
@@ -67,7 +69,7 @@ public class EnhancedCanvas : Canvas {
     }
     
     func interpret(character : Character, forThis system : VisualizedLindenmayerSystem) {
-        
+        let defaultColour = Color(hue: 0, saturation: 0, brightness: 0, alpha: 100)
         // Interpret each character of the word
         let unicodeScalar = String(character).unicodeScalars
     
@@ -79,17 +81,33 @@ public class EnhancedCanvas : Canvas {
             // Turn right
             self.rotate(by: system.angle * -1)
         case "1":
-            let newColor = system.colours["1"]
-            self.lineColor = Color(hue: (newColor?.hue)!, saturation: (newColor?.saturation)!, brightness: (newColor?.brightness)!, alpha: 100)
+            guard let newColor = system.colours["1"] else
+            {
+                self.lineColor = Color(hue: defaultColour.hue, saturation: defaultColour.saturation, brightness: defaultColour.brightness, alpha: defaultColour.alpha)
+                break
+            }
+            self.lineColor = Color(hue: (newColor.hue), saturation: (newColor.saturation), brightness: (newColor.brightness), alpha: 100)
         case "2":
-            let newColor = system.colours["2"]
-            self.lineColor = Color(hue: (newColor?.hue)!, saturation: (newColor?.saturation)!, brightness: (newColor?.brightness)!, alpha: 100)
+            guard let newColor = system.colours["2"] else
+            {
+                self.lineColor = Color(hue: defaultColour.hue, saturation: defaultColour.saturation, brightness: defaultColour.brightness, alpha: defaultColour.alpha)
+                break
+            }
+            self.lineColor = Color(hue: (newColor.hue), saturation: (newColor.saturation), brightness: (newColor.brightness), alpha: 100)
         case "3":
-            let newColor = system.colours["3"]
-            self.lineColor = Color(hue: (newColor?.hue)!, saturation: (newColor?.saturation)!, brightness: (newColor?.brightness)!, alpha: 100)
+            guard let newColor = system.colours["3"] else
+            {
+                self.lineColor = Color(hue: defaultColour.hue, saturation: defaultColour.saturation, brightness: defaultColour.brightness, alpha: defaultColour.alpha)
+                break
+            }
+            self.lineColor = Color(hue: (newColor.hue), saturation: (newColor.saturation), brightness: (newColor.brightness), alpha: 100)
         case "4":
-            let newColor = system.colours["4"]
-            self.lineColor = Color(hue: (newColor?.hue)!, saturation: (newColor?.saturation)!, brightness: (newColor?.brightness)!, alpha: 100)
+            guard let newColor = system.colours["3"] else
+            {
+                self.lineColor = Color(hue: defaultColour.hue, saturation: defaultColour.saturation, brightness: defaultColour.brightness, alpha: defaultColour.alpha)
+                break
+            }
+            self.lineColor = Color(hue: (newColor.hue), saturation: (newColor.saturation), brightness: (newColor.brightness), alpha: 100)
         case "[":
             self.saveState()
         case "]":
