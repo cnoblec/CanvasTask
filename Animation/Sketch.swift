@@ -71,11 +71,11 @@ class Sketch : NSObject {
         // The frame rate can be adjusted; the default is 60 fps
         canvas.framesPerSecond = 120
         
-        triangle = LindenmayerSystem(angle: 10, axiom: "F++F++F",rules: ["F":["1/F[-X]"],"X" : ["1/X[+F]","2/X[-F]"]], generations: 6)
+        triangle = LindenmayerSystem(angle: 60, axiom: "FFF[-B][+B]",rules: ["F":["F"],"B" : ["FF[+B][-B]"]], generations: 7)
         
 //        FProb = probabilities(predecessor: "F", successor: [0.5:"+F",0.5:"-F"])
         
-        vistriangle = VisualizedLindenmayerSystem(with: triangle, length: 200, reduction: 2, x: 200, y: 200, direction: 90, colours: ["1":Colour(hue: 240, saturation: 80, brightness: 90)],probability: [FProb])
+        vistriangle = VisualizedLindenmayerSystem(with: triangle, length: 200, reduction: 2, x: 200, y: 0, direction: 90, colours: ["1":Colour(hue: 240, saturation: 80, brightness: 90)],probability: [FProb])
 
 //        canvas.render(system: vistriangle, generation: 7)
     }
@@ -84,7 +84,7 @@ class Sketch : NSObject {
     func draw() {
         
         // Render the current system
-        canvas.renderAnimated(system: vistriangle, generation: 4)
+        canvas.renderAnimated(system: vistriangle, generation: 2)
     }
     
     // Respond to the mouseDown event

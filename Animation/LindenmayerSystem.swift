@@ -1,6 +1,7 @@
 import Foundation
 
-public class LindenmayerSystem {
+public class LindenmayerSystem
+{
     // Set up required information
     var angle : Degrees                 // rotation amount for turtle (degrees)
     var axiom : String

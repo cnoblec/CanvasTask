@@ -8,7 +8,8 @@
 
 import Foundation
 
-public class VisualizedLindenmayerSystem : LindenmayerSystem {
+public class VisualizedLindenmayerSystem : LindenmayerSystem
+{
     
     var initialLength : Float               // initial line segment length
     var reduction : Float                   // reduction factor
