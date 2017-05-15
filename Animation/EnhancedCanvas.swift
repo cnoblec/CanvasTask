@@ -68,6 +68,14 @@ public class EnhancedCanvas : Canvas {
         
     }
     
+    public func renderAnimatedSystems(systems : [VisualizedLindenmayerSystem], generationInOrder : [Int], startPosInOrder: [Degrees])
+    {
+        for system in systems
+        {
+            renderAnimated(system: system, generation: generationInOrder[0])
+        }
+    }
+    
     func interpret(character : Character, forThis system : VisualizedLindenmayerSystem) {
         let defaultColour = Color(hue: 0, saturation: 0, brightness: 0, alpha: 100)
         // Interpret each character of the word
