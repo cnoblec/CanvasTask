@@ -30,11 +30,6 @@ class Sketch : NSObject {
     
 //    let vissquare : VisualizedLindenmayerSystem
     
-    var FProb : probabilities
-    
-    var ruleSet : [String : [String]]
-    
-    var probRules : [probabilities]
     
     // Create visualizations of other systems
 //    let largeKochIsland : VisualizedLindenmayerSystem
@@ -45,17 +40,8 @@ class Sketch : NSObject {
     override init() {
         
         
-        ruleSet = ["F" : ["+F","-F"],"X" : ["+X"]]
-        
-        FProb = probabilities(predecessor: "F", successor: ["-f"])
-        
-        // Create a new canvas
-        
-        let rule1 = probabilities(predecessor: "F", successor: ["+F"])
-        let rule2 = probabilities(predecessor: "F", successor: ["-F"])
         canvas = EnhancedCanvas(width: 500, height: 500)
         
-        probRules = [rule1, rule2]
         
         // Set up a Koch snowflake
         kochSnowflake = LindenmayerSystem(angle: 60,
@@ -71,20 +57,18 @@ class Sketch : NSObject {
         // The frame rate can be adjusted; the default is 60 fps
         canvas.framesPerSecond = 120
         
-        triangle = LindenmayerSystem(angle: 60, axiom: "FFF[-B][+B]",rules: ["F":["F"],"B" : ["FF[+B][-B]"]], generations: 7)
+        triangle = LindenmayerSystem(angle: 30, axiom: "F",rules: ["F":["1/+F-FF","1/F+FF","1/F-FF"]], generations: 8)
+                
+        vistriangle = VisualizedLindenmayerSystem(with: triangle, length: 200, reduction: 2, x: 200, y: 0, direction: 90, colours: ["1":Colour(hue: 240, saturation: 80, brightness: 90)])
         
-//        FProb = probabilities(predecessor: "F", successor: [0.5:"+F",0.5:"-F"])
-        
-        vistriangle = VisualizedLindenmayerSystem(with: triangle, length: 200, reduction: 2, x: 200, y: 0, direction: 90, colours: ["1":Colour(hue: 240, saturation: 80, brightness: 90)],probability: [FProb])
-
-//        canvas.render(system: vistriangle, generation: 7)
+        canvas.render(system: vistriangle, generation: 8)
     }
     
     // Runs repeatedly, equivalent to draw() in Processing
     func draw() {
         
         // Render the current system
-        canvas.renderAnimated(system: vistriangle, generation: 2)
+//        canvas.renderAnimated(system: vistriangle, generation: 8)
     }
     
     // Respond to the mouseDown event

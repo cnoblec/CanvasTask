@@ -22,6 +22,7 @@ public class EnhancedCanvas : Canvas {
         // Render the word
         self.saveState()
         self.translate(byX: system.x, byY: system.y) // Move turtle to starting point
+        self.rotate(by: Degrees(system.direction))
         for c in system.word[generation].characters {
             interpret(character: c, forThis: system)
         }
@@ -68,12 +69,9 @@ public class EnhancedCanvas : Canvas {
         
     }
     
-    public func renderAnimatedSystems(systems : [VisualizedLindenmayerSystem], generationInOrder : [Int], startPosInOrder: [Degrees])
+    public func renderAnimatedSystems(systems : [VisualizedLindenmayerSystem], generationInOrder : [Int])
     {
-        for system in systems
-        {
-            renderAnimated(system: system, generation: generationInOrder[0])
-        }
+        
     }
     
     func interpret(character : Character, forThis system : VisualizedLindenmayerSystem) {
@@ -116,10 +114,10 @@ public class EnhancedCanvas : Canvas {
                 break
             }
             self.lineColor = Color(hue: (newColor.hue), saturation: (newColor.saturation), brightness: (newColor.brightness), alpha: 100)
-        case "[":
-            self.saveState()
-        case "]":
-            self.restoreState()
+//        case "[":
+//            self.saveState()
+//        case "]":
+//            self.restoreState()
         default:
             // Do nothing for any another character in the word
             if unicodeScalar[unicodeScalar.startIndex].value >= 65 && unicodeScalar[unicodeScalar.startIndex].value <= 90

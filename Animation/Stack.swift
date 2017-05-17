@@ -8,7 +8,25 @@
 
 import Foundation
 
-public struct Stack
+
+public class CustomStack
+{
+    var stack : [stackInformation]
+    
+    public init(stack : [stackInformation])
+    {
+        self.stack = stack
+    }
+}
+
+public struct stackInformation
+{
+    var x : Int
+    var y : Int
+    var angle : Degrees
+}
+
+public func pushState()
 {
     
 }
