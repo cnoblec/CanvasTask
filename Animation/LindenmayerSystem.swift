@@ -24,7 +24,6 @@ public class LindenmayerSystem
         
         // Apply the production rule
         applyRules()
-        
     }
     
     public init(with system : LindenmayerSystem) {

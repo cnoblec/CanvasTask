@@ -32,7 +32,7 @@ class Sketch : NSObject {
     
     
     // Create visualizations of other systems
-//    let largeKochIsland : VisualizedLindenmayerSystem
+    let largeKochIsland : VisualizedLindenmayerSystem
 //    let mediumKochSwirl : VisualizedLindenmayerSystem
 //    let mediumConstruction : VisualizedLindenmayerSystem
     
@@ -54,6 +54,7 @@ class Sketch : NSObject {
                                        axiom: "F-F-F-F",
                                        rules: ["F":["F-F+F+FF-F-F+F"]],
                                        generations: 5)
+        largeKochIsland = VisualizedLindenmayerSystem(with: kochIsland, length: 200, reduction: 2, x: 0, y: 200, direction: 0, colours: ["1":Colour(hue: 240, saturation: 80, brightness: 90)])
         // The frame rate can be adjusted; the default is 60 fps
         canvas.framesPerSecond = 120
         
@@ -61,14 +62,15 @@ class Sketch : NSObject {
                 
         vistriangle = VisualizedLindenmayerSystem(with: triangle, length: 200, reduction: 2, x: 200, y: 0, direction: 90, colours: ["1":Colour(hue: 240, saturation: 80, brightness: 90)])
         
-        canvas.render(system: vistriangle, generation: 8)
+//        canvas.render(system: vistriangle, generation: 8)
     }
     
     // Runs repeatedly, equivalent to draw() in Processing
     func draw() {
         
         // Render the current system
-//        canvas.renderAnimated(system: vistriangle, generation: 8)
+        canvas.renderAnimated(system: vistriangle, generation: 8)
+//        canvas.renderAnimated(system: largeKochIsland, generation: 2)
     }
     
     // Respond to the mouseDown event
