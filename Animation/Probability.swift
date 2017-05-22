@@ -8,13 +8,7 @@
 
 import Foundation
 
-public struct probabilities
-{
-    var predecessor : String
-    var successor : [String]
-}
-
-func randSuccesor(successors: [String]) -> String
+public func randSuccesor(successors: [String]) -> String
 {
     var probArray :[Int] = []
     var addativeArray : [Int] = []

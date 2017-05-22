@@ -19,7 +19,6 @@ public class VisualizedLindenmayerSystem : LindenmayerSystem
     var currentLength : Float               // current line segment length
     var animationPosition = 0               // tracks current character being interpreted when system is animated
     var colours : [String : Colour]
-    var probability : [probabilities]
 
     public init(with providedSystem: LindenmayerSystem,
                 length: Float,
@@ -27,8 +26,7 @@ public class VisualizedLindenmayerSystem : LindenmayerSystem
                 x: Int,
                 y: Int,
                 direction: Int,
-                colours : [String : Colour],
-                probability: [probabilities])
+                colours : [String : Colour])
     {
         // Initialize stored properties
         self.initialLength = length
@@ -38,7 +36,6 @@ public class VisualizedLindenmayerSystem : LindenmayerSystem
         self.direction = direction
         self.currentLength = self.initialLength
         self.colours = colours
-        self.probability = probability
         super.init(with: providedSystem)
         
     }

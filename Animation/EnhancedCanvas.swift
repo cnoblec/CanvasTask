@@ -22,6 +22,7 @@ public class EnhancedCanvas : Canvas {
         // Render the word
         self.saveState()
         self.translate(byX: system.x, byY: system.y) // Move turtle to starting point
+        self.rotate(by: Degrees(system.direction))
         for c in system.word[generation].characters {
             interpret(character: c, forThis: system)
         }
@@ -45,7 +46,6 @@ public class EnhancedCanvas : Canvas {
 
             // Move turtle to starting point
             self.translate(byX: system.x, byY: system.y) // Move turtle to starting point
-            
             self.rotate(by: Degrees(system.direction))
         }
         
@@ -68,6 +68,35 @@ public class EnhancedCanvas : Canvas {
         
     }
     
+    public func renderAnimatedSystems(systems : [VisualizedLindenmayerSystem], generations : [Int])
+    {
+        var i = 0
+        for system in systems
+        {
+            // Verify that generation that was asked to be rendered actually exists
+            
+            var generation : Int
+            if generations.count > i
+            {
+                generation = generations[i]
+            } else {
+                generation = generations[generations.count - 1]
+            }
+            if generation > system.n {
+                generation = system.n
+            }
+            
+            // Things to do at start of L-system animation...
+            if system.animationPosition == 0 {
+                
+                // Change the line length
+                system.currentLength = Float(Double(system.initialLength) / pow(Double(system.reduction), Double(generation)) )
+            }
+            
+            i += 1
+        }
+    }
+    
     func interpret(character : Character, forThis system : VisualizedLindenmayerSystem) {
         let defaultColour = Color(hue: 0, saturation: 0, brightness: 0, alpha: 100)
         // Interpret each character of the word
@@ -80,38 +109,38 @@ public class EnhancedCanvas : Canvas {
         case "-":
             // Turn right
             self.rotate(by: system.angle * -1)
-        case "1":
-            guard let newColor = system.colours["1"] else
+        case "1","2","3","4","5","6":
+            guard let newColor = system.colours[String(character)] else
             {
                 self.lineColor = Color(hue: defaultColour.hue, saturation: defaultColour.saturation, brightness: defaultColour.brightness, alpha: defaultColour.alpha)
                 break
             }
             self.lineColor = Color(hue: (newColor.hue), saturation: (newColor.saturation), brightness: (newColor.brightness), alpha: 100)
-        case "2":
-            guard let newColor = system.colours["2"] else
-            {
-                self.lineColor = Color(hue: defaultColour.hue, saturation: defaultColour.saturation, brightness: defaultColour.brightness, alpha: defaultColour.alpha)
-                break
-            }
-            self.lineColor = Color(hue: (newColor.hue), saturation: (newColor.saturation), brightness: (newColor.brightness), alpha: 100)
-        case "3":
-            guard let newColor = system.colours["3"] else
-            {
-                self.lineColor = Color(hue: defaultColour.hue, saturation: defaultColour.saturation, brightness: defaultColour.brightness, alpha: defaultColour.alpha)
-                break
-            }
-            self.lineColor = Color(hue: (newColor.hue), saturation: (newColor.saturation), brightness: (newColor.brightness), alpha: 100)
-        case "4":
-            guard let newColor = system.colours["3"] else
-            {
-                self.lineColor = Color(hue: defaultColour.hue, saturation: defaultColour.saturation, brightness: defaultColour.brightness, alpha: defaultColour.alpha)
-                break
-            }
-            self.lineColor = Color(hue: (newColor.hue), saturation: (newColor.saturation), brightness: (newColor.brightness), alpha: 100)
-        case "[":
-            self.saveState()
-        case "]":
-            self.restoreState()
+//        case "2":
+//            guard let newColor = system.colours["2"] else
+//            {
+//                self.lineColor = Color(hue: defaultColour.hue, saturation: defaultColour.saturation, brightness: defaultColour.brightness, alpha: defaultColour.alpha)
+//                break
+//            }
+//            self.lineColor = Color(hue: (newColor.hue), saturation: (newColor.saturation), brightness: (newColor.brightness), alpha: 100)
+//        case "3":
+//            guard let newColor = system.colours["3"] else
+//            {
+//                self.lineColor = Color(hue: defaultColour.hue, saturation: defaultColour.saturation, brightness: defaultColour.brightness, alpha: defaultColour.alpha)
+//                break
+//            }
+//            self.lineColor = Color(hue: (newColor.hue), saturation: (newColor.saturation), brightness: (newColor.brightness), alpha: 100)
+//        case "4":
+//            guard let newColor = system.colours["3"] else
+//            {
+//                self.lineColor = Color(hue: defaultColour.hue, saturation: defaultColour.saturation, brightness: defaultColour.brightness, alpha: defaultColour.alpha)
+//                break
+//            }
+//            self.lineColor = Color(hue: (newColor.hue), saturation: (newColor.saturation), brightness: (newColor.brightness), alpha: 100)
+//        case "[":
+//            self.saveState()
+//        case "]":
+//            self.restoreState()
         default:
             // Do nothing for any another character in the word
             if unicodeScalar[unicodeScalar.startIndex].value >= 65 && unicodeScalar[unicodeScalar.startIndex].value <= 90

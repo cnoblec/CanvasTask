@@ -22,6 +22,9 @@
 
 /* Begin PBXFileReference section */
 		3F175EFD1EBA526A00DC7884 /* Colour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colour.swift; sourceTree = "<group>"; };
+		3F500C341ED3A5E80027D773 /* LineReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineReader.swift; sourceTree = "<group>"; };
+		3F500C351ED3A5E80027D773 /* LineWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineWriter.swift; sourceTree = "<group>"; };
+		3F500C381ED3A5F30027D773 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3FA8BAF71EC3942B009D1123 /* MultiRuleTest.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MultiRuleTest.playground; sourceTree = "<group>"; };
 		3FE33D1B1EBD0EC000148233 /* Probability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Probability.swift; sourceTree = "<group>"; };
 		81064A061C130A10007ED524 /* Canvas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Canvas.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +86,9 @@
 				81F1943A1EABB91100832CA6 /* EnhancedCanvas.swift */,
 				81F1943B1EABB91100832CA6 /* LindenmayerSystem.swift */,
 				81678C531EBA34D3006FB3B9 /* VisualizedLindenmayerSystem.swift */,
+				3F500C341ED3A5E80027D773 /* LineReader.swift */,
+				3F500C351ED3A5E80027D773 /* LineWriter.swift */,
+				3F500C381ED3A5F30027D773 /* main.swift */,
 				3F175EFD1EBA526A00DC7884 /* Colour.swift */,
 				3FE33D1B1EBD0EC000148233 /* Probability.swift */,
 				81EAC5A31D87DF52005DD91D /* Helper.swift */,
@@ -167,8 +173,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				81064A0C1C130A10007ED524 /* ViewController.swift in Sources */,
+				3F500C391ED3A5F30027D773 /* main.swift in Sources */,
 				81F1943D1EABB91100832CA6 /* LindenmayerSystem.swift in Sources */,
 				81EAC5A41D87DF52005DD91D /* Helper.swift in Sources */,
+				3F500C361ED3A5E80027D773 /* LineReader.swift in Sources */,
+				3F500C371ED3A5E80027D773 /* LineWriter.swift in Sources */,
 				3F175EFE1EBA526A00DC7884 /* Colour.swift in Sources */,
 				81678C541EBA34D3006FB3B9 /* VisualizedLindenmayerSystem.swift in Sources */,
 				81F1943C1EABB91100832CA6 /* EnhancedCanvas.swift in Sources */,

@@ -24,7 +24,6 @@ public class LindenmayerSystem
         
         // Apply the production rule
         applyRules()
-        
     }
     
     public init(with system : LindenmayerSystem) {
@@ -54,7 +53,6 @@ public class LindenmayerSystem
                 // Inspect each character of existing word
                 for character in word[i - 1].characters {
                     
-                 
                     let unicodeScalar = String(character).unicodeScalars
                     switch character {
                     case "+", "-", "[", "]":
