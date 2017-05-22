@@ -69,7 +69,7 @@ class Sketch : NSObject {
     func draw() {
         
         // Render the current system
-        canvas.renderAnimated(system: vistriangle, generation: 8)
+        canvas.renderAnimatedSystems(systems: [vistriangle,largeKochIsland], generations: [8,2])
 //        canvas.renderAnimated(system: largeKochIsland, generation: 2)
     }
     

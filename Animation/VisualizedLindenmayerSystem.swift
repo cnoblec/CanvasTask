@@ -37,8 +37,5 @@ public class VisualizedLindenmayerSystem : LindenmayerSystem
         self.currentLength = self.initialLength
         self.colours = colours
         super.init(with: providedSystem)
-        
     }
-    
-    
 }
