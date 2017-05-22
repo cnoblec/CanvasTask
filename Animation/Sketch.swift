@@ -58,7 +58,7 @@ class Sketch : NSObject {
         // The frame rate can be adjusted; the default is 60 fps
         canvas.framesPerSecond = 120
         
-        triangle = LindenmayerSystem(angle: 30, axiom: "F",rules: ["F":["1/+F-FF","1/F+FF","1/F-FF"]], generations: 8)
+        triangle = LindenmayerSystem(angle: 10, axiom: "F",rules: ["F":["1/F+FF","1/F-FF"]], generations: 8)
                 
         vistriangle = VisualizedLindenmayerSystem(with: triangle, length: 200, reduction: 2, x: 200, y: 0, direction: 90, colours: ["1":Colour(hue: 240, saturation: 80, brightness: 90)])
         
