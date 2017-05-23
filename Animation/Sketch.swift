@@ -54,13 +54,13 @@ class Sketch : NSObject {
                                        axiom: "F-F-F-F",
                                        rules: ["F":["F-F+F+FF-F-F+F"]],
                                        generations: 5)
-        largeKochIsland = VisualizedLindenmayerSystem(with: kochIsland, length: 200, reduction: 2, x: 0, y: 200, direction: 0, colours: ["1":Colour(hue: 240, saturation: 80, brightness: 90)])
+        largeKochIsland = VisualizedLindenmayerSystem(with: kochIsland, length: 10, reduction: 4, x: 300, y: 200, direction: 0, colours: ["1":Colour(hue: 240, saturation: 80, brightness: 90)])
         // The frame rate can be adjusted; the default is 60 fps
         canvas.framesPerSecond = 120
         
-        triangle = LindenmayerSystem(angle: 10, axiom: "F",rules: ["F":["1/F+FF","1/F-FF"]], generations: 8)
+        triangle = LindenmayerSystem(angle: 60, axiom: "F++F++F",rules: ["F":["F-F++F-F"]], generations: 8)
                 
-        vistriangle = VisualizedLindenmayerSystem(with: triangle, length: 200, reduction: 2, x: 200, y: 0, direction: 90, colours: ["1":Colour(hue: 240, saturation: 80, brightness: 90)])
+        vistriangle = VisualizedLindenmayerSystem(with: triangle, length: 200, reduction: 2, x: 20, y: 20, direction: 30, colours: ["1":Colour(hue: 240, saturation: 80, brightness: 90)])
         
 //        canvas.render(system: vistriangle, generation: 8)
     }
@@ -69,7 +69,7 @@ class Sketch : NSObject {
     func draw() {
         
         // Render the current system
-        canvas.renderAnimatedSystems(systems: [vistriangle,largeKochIsland], generations: [8,2])
+        canvas.renderAnimatedSystems(systems: [vistriangle,largeKochIsland], generations: [1,1])
 //        canvas.renderAnimated(system: largeKochIsland, generation: 2)
     }
     

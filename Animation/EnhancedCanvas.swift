@@ -113,16 +113,21 @@ public class EnhancedCanvas : Canvas {
     
     func interpret(character : Character, forThis system : VisualizedLindenmayerSystem) {
         let defaultColour = Color(hue: 0, saturation: 0, brightness: 0, alpha: 100)
+        
+        // update the x and y positoins using trig to find how far they move
+        let updatedX = Float(CGFloat(system.x) + cos(CGFloat(M_PI) * system.currentAngle/180) * CGFloat(system.currentLength))
+        let updatedY = Float(CGFloat(system.y) + sin(CGFloat(M_PI) * system.currentAngle/180) * CGFloat(system.currentLength))
+        
         // Interpret each character of the word
         let unicodeScalar = String(character).unicodeScalars
                 
         switch character {
         case "+":
             // Turn left
-            self.rotate(by: system.angle)
+            system.currentAngle += system.angle
         case "-":
             // Turn right
-            self.rotate(by: system.angle * -1)
+            system.currentAngle -= system.angle
         case "1","2","3","4","5","6":
             guard let newColor = system.colours[String(character)] else
             {
@@ -130,20 +135,25 @@ public class EnhancedCanvas : Canvas {
                 break
             }
             self.lineColor = Color(hue: (newColor.hue), saturation: (newColor.saturation), brightness: (newColor.brightness), alpha: 100)
-//        case "[":
-//            self.saveState()
-//        case "]":
-//            self.restoreState()
+        case "[":
+            system.infoStack.append(VisualizedLindenmayerSystem.sysInfo(x: Float(system.x), y: Float(system.y), angle: Degrees(system.direction)))
+        case "]":
+            system.x = system.infoStack[system.infoStack.count - 1].x
+            system.y = system.infoStack[system.infoStack.count - 1].y
+            system.angle = system.infoStack[system.infoStack.count - 1].angle
+            system.infoStack.removeLast()
         default:
             // Do nothing for any another character in the word
             if unicodeScalar[unicodeScalar.startIndex].value >= 65 && unicodeScalar[unicodeScalar.startIndex].value <= 90
             {
-                self.drawLine(fromX: 0, fromY: 0, toX: system.currentLength, toY: 0)
-                self.translate(byX: system.currentLength, byY: 0)
+                self.drawLine(fromX: system.x, fromY: system.y, toX: updatedX, toY: updatedY)
+                system.x = updatedX
+                system.y = updatedY
             }
             if unicodeScalar[unicodeScalar.startIndex].value >= 97 && unicodeScalar[unicodeScalar.startIndex].value <= 122
             {
-                self.translate(byX: system.currentLength, byY: 0)
+                system.x = updatedX
+                system.y = updatedY
             }
         }
     }

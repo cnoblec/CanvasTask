@@ -11,21 +11,30 @@ import Foundation
 public class VisualizedLindenmayerSystem : LindenmayerSystem
 {
     
+    public struct sysInfo
+    {
+        var x : Float
+        var y : Float
+        var angle : Degrees
+    }
+    
     var initialLength : Float               // initial line segment length
     var reduction : Float                   // reduction factor
-    var x : Int                             // initial horizontal position of turtle
-    var y : Int                             // initial vertical position of turtle
-    var direction : Int                     // initial direction turtle faces (degrees)
+    var x : Float                             // initial horizontal position of turtle
+    var y : Float                             // initial vertical position of turtle
+    var direction : Float                     // initial direction turtle faces (degrees)
+    var currentAngle : Degrees              //
     var currentLength : Float               // current line segment length
     var animationPosition = 0               // tracks current character being interpreted when system is animated
     var colours : [String : Colour]
+    var infoStack = [sysInfo]()
 
     public init(with providedSystem: LindenmayerSystem,
                 length: Float,
                 reduction: Float,
-                x: Int,
-                y: Int,
-                direction: Int,
+                x: Float,
+                y: Float,
+                direction: Float,
                 colours : [String : Colour])
     {
         // Initialize stored properties
@@ -36,6 +45,7 @@ public class VisualizedLindenmayerSystem : LindenmayerSystem
         self.direction = direction
         self.currentLength = self.initialLength
         self.colours = colours
+        self.currentAngle = Degrees(direction)
         super.init(with: providedSystem)
     }
 }
