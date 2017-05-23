@@ -45,7 +45,7 @@ class Sketch : NSObject {
                                        axiom: "F-F-F-F",
                                        rules: ["F":["F-F+F+FF-F-F+F"]],
                                        generations: 5)
-        largeKochIsland = VisualizedLindenmayerSystem(with: kochIsland, length: 10, lineReduction: 4, width: 1, widthReduction: 1, x: 300, y: 200, direction: 0, colours: ["1":Colour(hue: 240, saturation: 80, brightness: 90)])
+        largeKochIsland = VisualizedLindenmayerSystem(with: kochIsland, length: 10, lineReduction: 4, x: 300, y: 200, direction: 0, colours: ["1":Colour(hue: 240, saturation: 80, brightness: 90)])
         // The frame rate can be adjusted; the default is 60 fps
         canvas.framesPerSecond = 120
         // "FFFFF[-------FFFF]F[------FFF][-------FFF][+++FF]F[-----FF]F"

@@ -19,7 +19,7 @@ public class EnhancedCanvas : Canvas {
         // Change the line length
         system.currentLength = Float( Double(system.initialLength) / pow(Double(system.lineReduction), Double(generation)) )
         
-        
+        system.currentWidth = Float(Double(system.initialWidth) / pow(Double(system.widthReduction),Double(generation)))
         
         // Render the word
         self.saveState()
@@ -46,6 +46,8 @@ public class EnhancedCanvas : Canvas {
             // Change the line length
             system.currentLength = Float(Double(system.initialLength) / pow(Double(system.lineReduction), Double(generation)) )
 
+            system.currentWidth = Float(Double(system.initialWidth) / pow(Double(system.widthReduction),Double(generation)))
+            
             // Move turtle to starting point
             self.translate(byX: system.x, byY: system.y) // Move turtle to starting point
             self.rotate(by: Degrees(system.direction))
@@ -92,6 +94,7 @@ public class EnhancedCanvas : Canvas {
                 
                 // Change the line length
                 system.currentLength = Float(Double(system.initialLength) / pow(Double(system.lineReduction), Double(generation)) )
+                system.currentWidth = Float(Double(system.initialWidth) / pow(Double(system.widthReduction),Double(generation)))
                 system.currentAngle = Degrees(system.direction)
             }
             
@@ -118,12 +121,12 @@ public class EnhancedCanvas : Canvas {
         let defaultColour = Color(hue: 0, saturation: 0, brightness: 0, alpha: 100)
         
         // update the x and y positoins using trig to find how far they move
-        let updatedX = Float(CGFloat(system.x) + cos(CGFloat(M_PI) * system.currentAngle/180) * CGFloat(system.currentLength))
-        let updatedY = Float(CGFloat(system.y) + sin(CGFloat(M_PI) * system.currentAngle/180) * CGFloat(system.currentLength))
-        
+        let updatedX = Float(CGFloat(system.x) + cos( system.currentAngle * CGFloat(M_PI)/180) * CGFloat(system.currentLength))
+        let updatedY = Float(CGFloat(system.y) + sin(system.currentAngle * CGFloat(M_PI)/180) * CGFloat(system.currentLength))
+                
         // Interpret each character of the word
         let unicodeScalar = String(character).unicodeScalars
-                
+        
         switch character {
         case "+":
             // Turn left
@@ -149,8 +152,7 @@ public class EnhancedCanvas : Canvas {
             // Do nothing for any another character in the word
             if unicodeScalar[unicodeScalar.startIndex].value >= 65 && unicodeScalar[unicodeScalar.startIndex].value <= 90
             {
-                
-                self.drawLine(fromX: system.x, fromY: system.y, toX: updatedX, toY: updatedY)
+                self.drawLine(fromX: system.x, fromY: system.y, toX: updatedX, toY: updatedY, lineWidth: Int(system.currentWidth))
                 system.x = updatedX
                 system.y = updatedY
             }
