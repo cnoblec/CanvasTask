@@ -45,13 +45,13 @@ class Sketch : NSObject {
                                        axiom: "F-F-F-F",
                                        rules: ["F":["F-F+F+FF-F-F+F"]],
                                        generations: 5)
-        largeKochIsland = VisualizedLindenmayerSystem(with: kochIsland, length: 10, reduction: 4, x: 300, y: 200, direction: 0, colours: ["1":Colour(hue: 240, saturation: 80, brightness: 90)])
+        largeKochIsland = VisualizedLindenmayerSystem(with: kochIsland, length: 10, lineReduction: 4, width: 1, widthReduction: 1, x: 300, y: 200, direction: 0, colours: ["1":Colour(hue: 240, saturation: 80, brightness: 90)])
         // The frame rate can be adjusted; the default is 60 fps
         canvas.framesPerSecond = 120
         // "FFFFF[-------FFFF]F[------FFF][-------FFF][+++FF]F[-----FF]F"
         triangle = LindenmayerSystem(angle: 15, axiom: "F",rules: ["F":["XXXXX[-------XXFF]X[------FFF][-------XFF][+++FF]F[-----FF]F"], "X": ["XXXXXX"]], generations: 3)
                 
-        vistriangle = VisualizedLindenmayerSystem(with: triangle, length: 200, reduction: 6, x: 220, y: 20, direction: 90, colours: ["1":Colour(hue: 240, saturation: 80, brightness: 90)])
+        vistriangle = VisualizedLindenmayerSystem(with: triangle, length: 200, lineReduction: 6, width: 1, widthReduction: 1, x: 220, y: 20, direction: 90, colours: ["1":Colour(hue: 240, saturation: 80, brightness: 90)])
         
 //        canvas.render(system: vistriangle, generation: 8)
         

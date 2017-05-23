@@ -17,7 +17,9 @@ public class EnhancedCanvas : Canvas {
         }
         
         // Change the line length
-        system.currentLength = Float( Double(system.initialLength) / pow(Double(system.reduction), Double(generation)) )
+        system.currentLength = Float( Double(system.initialLength) / pow(Double(system.lineReduction), Double(generation)) )
+        
+        
         
         // Render the word
         self.saveState()
@@ -42,7 +44,7 @@ public class EnhancedCanvas : Canvas {
         if system.animationPosition == 0 {
             
             // Change the line length
-            system.currentLength = Float(Double(system.initialLength) / pow(Double(system.reduction), Double(generation)) )
+            system.currentLength = Float(Double(system.initialLength) / pow(Double(system.lineReduction), Double(generation)) )
 
             // Move turtle to starting point
             self.translate(byX: system.x, byY: system.y) // Move turtle to starting point
@@ -89,7 +91,7 @@ public class EnhancedCanvas : Canvas {
             if system.animationPosition == 0 {
                 
                 // Change the line length
-                system.currentLength = Float(Double(system.initialLength) / pow(Double(system.reduction), Double(generation)) )
+                system.currentLength = Float(Double(system.initialLength) / pow(Double(system.lineReduction), Double(generation)) )
                 system.currentAngle = Degrees(system.direction)
             }
             
