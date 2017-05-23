@@ -17,24 +17,15 @@ class Sketch : NSObject {
     // Create the basic L-systems
     let kochSnowflake : LindenmayerSystem
     let kochIsland : LindenmayerSystem
-//    let kochSwirl : LindenmayerSystem
-//    var kochConstruction : LindenmayerSystem
     let triangle : LindenmayerSystem
-//    let square : LindenmayerSystem
     
-    // Create the visualizations of the snowflake
-//    let smallKochSnowflake : VisualizedLindenmayerSystem
-//    let mediumKochSnowflake : VisualizedLindenmayerSystem
-    
+    // Create the visualizations of the L-sys
     let vistriangle : VisualizedLindenmayerSystem
     
-//    let vissquare : VisualizedLindenmayerSystem
     
     
     // Create visualizations of other systems
     let largeKochIsland : VisualizedLindenmayerSystem
-//    let mediumKochSwirl : VisualizedLindenmayerSystem
-//    let mediumConstruction : VisualizedLindenmayerSystem
     
     // This runs once, equivalent to setup() in Processing
     override init() {
@@ -57,20 +48,20 @@ class Sketch : NSObject {
         largeKochIsland = VisualizedLindenmayerSystem(with: kochIsland, length: 10, reduction: 4, x: 300, y: 200, direction: 0, colours: ["1":Colour(hue: 240, saturation: 80, brightness: 90)])
         // The frame rate can be adjusted; the default is 60 fps
         canvas.framesPerSecond = 120
-        
-        triangle = LindenmayerSystem(angle: 60, axiom: "F++F++F",rules: ["F":["F-F++F-F"]], generations: 8)
+        // "FFFFF[-------FFFF]F[------FFF][-------FFF][+++FF]F[-----FF]F"
+        triangle = LindenmayerSystem(angle: 15, axiom: "F",rules: ["F":["XXXXX[-------XXFF]X[------FFF][-------XFF][+++FF]F[-----FF]F"], "X": ["XXXXXX"]], generations: 3)
                 
-        vistriangle = VisualizedLindenmayerSystem(with: triangle, length: 200, reduction: 2, x: 20, y: 20, direction: 30, colours: ["1":Colour(hue: 240, saturation: 80, brightness: 90)])
+        vistriangle = VisualizedLindenmayerSystem(with: triangle, length: 200, reduction: 6, x: 220, y: 20, direction: 90, colours: ["1":Colour(hue: 240, saturation: 80, brightness: 90)])
         
 //        canvas.render(system: vistriangle, generation: 8)
+        
     }
     
     // Runs repeatedly, equivalent to draw() in Processing
     func draw() {
         
         // Render the current system
-        canvas.renderAnimatedSystems(systems: [vistriangle,largeKochIsland], generations: [1,1])
-//        canvas.renderAnimated(system: largeKochIsland, generation: 2)
+        canvas.renderAnimatedSystems(systems: [vistriangle], generations: [3])
     }
     
     // Respond to the mouseDown event

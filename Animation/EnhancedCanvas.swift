@@ -90,6 +90,7 @@ public class EnhancedCanvas : Canvas {
                 
                 // Change the line length
                 system.currentLength = Float(Double(system.initialLength) / pow(Double(system.reduction), Double(generation)) )
+                system.currentAngle = Degrees(system.direction)
             }
             
             // Don't run past end of the word
@@ -136,16 +137,17 @@ public class EnhancedCanvas : Canvas {
             }
             self.lineColor = Color(hue: (newColor.hue), saturation: (newColor.saturation), brightness: (newColor.brightness), alpha: 100)
         case "[":
-            system.infoStack.append(VisualizedLindenmayerSystem.sysInfo(x: Float(system.x), y: Float(system.y), angle: Degrees(system.direction)))
+            system.infoStack.append(VisualizedLindenmayerSystem.sysInfo(x: Float(system.x), y: Float(system.y), angle: system.currentAngle))
         case "]":
-            system.x = system.infoStack[system.infoStack.count - 1].x
-            system.y = system.infoStack[system.infoStack.count - 1].y
-            system.angle = system.infoStack[system.infoStack.count - 1].angle
+            system.x = (system.infoStack.last?.x)!
+            system.y = (system.infoStack.last?.y)!
+            system.currentAngle = (system.infoStack.last?.angle)!
             system.infoStack.removeLast()
         default:
             // Do nothing for any another character in the word
             if unicodeScalar[unicodeScalar.startIndex].value >= 65 && unicodeScalar[unicodeScalar.startIndex].value <= 90
             {
+                
                 self.drawLine(fromX: system.x, fromY: system.y, toX: updatedX, toY: updatedY)
                 system.x = updatedX
                 system.y = updatedY

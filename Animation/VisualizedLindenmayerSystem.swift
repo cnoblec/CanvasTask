@@ -27,6 +27,8 @@ public class VisualizedLindenmayerSystem : LindenmayerSystem
     var currentLength : Float               // current line segment length
     var animationPosition = 0               // tracks current character being interpreted when system is animated
     var colours : [String : Colour]
+    var lineWidth : Float?
+    var widthReduction : Float?
     var infoStack = [sysInfo]()
 
     public init(with providedSystem: LindenmayerSystem,
