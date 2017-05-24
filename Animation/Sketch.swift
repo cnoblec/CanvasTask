@@ -19,16 +19,24 @@ class Sketch : NSObject {
     let kochIsland : LindenmayerSystem
     let triangle : LindenmayerSystem
     
+    //let file : SharedFileParser
+    
     // Create the visualizations of the L-sys
     let vistriangle : VisualizedLindenmayerSystem
         
     // Create visualizations of other systems
     let largeKochIsland : VisualizedLindenmayerSystem
     
+    //let Lsystems : [VisualizedLindenmayerSystem]
+    
     // This runs once, equivalent to setup() in Processing
     override init() {
         
         canvas = EnhancedCanvas(width: 500, height: 500)
+        
+       // file = SharedFileParser(path: "/Users/student/Desktop/test.txt")
+        
+       // Lsystems = file.parseFile()
         
         
         // Set up a Koch snowflake
@@ -38,11 +46,11 @@ class Sketch : NSObject {
                                           generations: 5)
         
         // Set up a Koch Island
-        kochIsland = LindenmayerSystem(angle: 90,
-                                       axiom: "F-F-F-F",
-                                       rules: ["F":["F-F+F+FF-F-F+F"]],
+        kochIsland = LindenmayerSystem(angle: 25,
+                                       axiom: "X",
+                                       rules: ["F":["FF"],"X":["F[-X][X]F[-X]+FX"]],
                                        generations: 5)
-        largeKochIsland = VisualizedLindenmayerSystem(with: kochIsland, length: 10, lineReduction: 4, x: 300, y: 200, direction: 0, colours: ["1":Colour(hue: 240, saturation: 80, brightness: 90)])
+        largeKochIsland = VisualizedLindenmayerSystem(with: kochIsland, length: 200, lineReduction: 2, x: 0, y: 0, direction: 60, colours: ["1":Colour(hue: 240, saturation: 80, brightness: 90)])
         // The frame rate can be adjusted; the default is 60 fps
         canvas.framesPerSecond = 120
         // "FFFFF[-------FFFF]F[------FFF][-------FFF][+++FF]F[-----FF]F"
@@ -52,13 +60,18 @@ class Sketch : NSObject {
         
 //        canvas.render(system: vistriangle, generation: 8)
         
+        for (i, _) in largeKochIsland.word.enumerated()
+        {
+            print(largeKochIsland.word[i])
+        }
+        
     }
     
     // Runs repeatedly, equivalent to draw() in Processing
     func draw() {
         
         // Render the current system
-        canvas.renderAnimatedSystems(systems: [vistriangle], generations: [1])
+        canvas.renderAnimatedSystems(systems: [vistriangle,largeKochIsland], generations: [1,5])
     }
     
     // Respond to the mouseDown event

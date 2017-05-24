@@ -5,7 +5,6 @@
 //  Created by Russell Gordon on 5/11/17.
 //  Copyright © 2017 Royal St. George's College. All rights reserved.
 //
-
 import Foundation
 
 /// Read text file line by line
@@ -36,7 +35,7 @@ public class LineReader {
 }
 
 extension LineReader: Sequence {
-    func  makeIterator() -> AnyIterator<String> {
+    public func  makeIterator() -> AnyIterator<String> {
         return AnyIterator<String> {
             return self.nextLine
         }

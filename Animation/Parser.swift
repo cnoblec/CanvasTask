@@ -1,18 +1,16 @@
 import Foundation
 
-public class ParseIt
-{
-    let filePath : String
-    
-    init(path: String)
-    {
-        self.filepath = path
-    }
-}
+//public class Parser
+//{
+//    var filePath : String
+//    
+//    init(path: String)
+//    {
+//        self.filePath = path
+//    }
+//}
 
 /*
- 
- 
  func parce() -> [VisualizedLindenmayerSystem]
  {
  
@@ -36,11 +34,7 @@ public class ParseIt
  }
  print(components)
  }
- 
- 
- 
- 
- */
+*/
 
 
 //// Filename constant
