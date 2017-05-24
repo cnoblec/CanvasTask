@@ -9,7 +9,7 @@
 import Foundation
 
 /// Read text file line by line
-class LineReader {
+public class LineReader {
     let path: String
     
     fileprivate let file: UnsafeMutablePointer<FILE>!

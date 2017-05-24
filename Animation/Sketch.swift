@@ -21,15 +21,12 @@ class Sketch : NSObject {
     
     // Create the visualizations of the L-sys
     let vistriangle : VisualizedLindenmayerSystem
-    
-    
-    
+        
     // Create visualizations of other systems
     let largeKochIsland : VisualizedLindenmayerSystem
     
     // This runs once, equivalent to setup() in Processing
     override init() {
-        
         
         canvas = EnhancedCanvas(width: 500, height: 500)
         
@@ -61,7 +58,7 @@ class Sketch : NSObject {
     func draw() {
         
         // Render the current system
-        canvas.renderAnimatedSystems(systems: [vistriangle], generations: [3])
+        canvas.renderAnimatedSystems(systems: [vistriangle], generations: [1])
     }
     
     // Respond to the mouseDown event

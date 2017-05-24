@@ -24,7 +24,7 @@
 		3F175EFD1EBA526A00DC7884 /* Colour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colour.swift; sourceTree = "<group>"; };
 		3F500C341ED3A5E80027D773 /* LineReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineReader.swift; sourceTree = "<group>"; };
 		3F500C351ED3A5E80027D773 /* LineWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineWriter.swift; sourceTree = "<group>"; };
-		3F500C381ED3A5F30027D773 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		3F500C381ED3A5F30027D773 /* LSystemParcer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LSystemParcer.swift; sourceTree = "<group>"; };
 		3FA8BAF71EC3942B009D1123 /* MultiRuleTest.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MultiRuleTest.playground; sourceTree = "<group>"; };
 		3FE33D1B1EBD0EC000148233 /* Probability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Probability.swift; sourceTree = "<group>"; };
 		81064A061C130A10007ED524 /* Canvas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Canvas.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,7 +88,7 @@
 				81678C531EBA34D3006FB3B9 /* VisualizedLindenmayerSystem.swift */,
 				3F500C341ED3A5E80027D773 /* LineReader.swift */,
 				3F500C351ED3A5E80027D773 /* LineWriter.swift */,
-				3F500C381ED3A5F30027D773 /* main.swift */,
+				3F500C381ED3A5F30027D773 /* LSystemParcer.swift */,
 				3F175EFD1EBA526A00DC7884 /* Colour.swift */,
 				3FE33D1B1EBD0EC000148233 /* Probability.swift */,
 				81EAC5A31D87DF52005DD91D /* Helper.swift */,
