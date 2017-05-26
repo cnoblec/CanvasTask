@@ -16,6 +16,7 @@ public class VisualizedLindenmayerSystem : LindenmayerSystem
         var x : Float
         var y : Float
         var angle : Degrees
+        var colour : Color
     }
     
     var initialLength : Float               // initial line segment length
@@ -31,6 +32,7 @@ public class VisualizedLindenmayerSystem : LindenmayerSystem
     var currentWidth : Float
     var animationPosition = 0               // tracks current character being interpreted when system is animated
     var colours : [String : Colour]
+    var currentColour : Color = Color(hue: 0, saturation: 0, brightness: 0, alpha: 100)
     var infoStack = [sysInfo]()
 
     public init(with providedSystem: LindenmayerSystem,
@@ -41,7 +43,8 @@ public class VisualizedLindenmayerSystem : LindenmayerSystem
                 x: Float,
                 y: Float,
                 direction: Float,
-                colours : [String : Colour] = ["1":Colour(hue: 0, saturation: 0, brightness: 0)])
+                colours : [String : Colour] = ["1" : Colour(hue: 0, saturation: 0, brightness: 0)]
+                )
     {
         // Initialize stored properties
         self.initialLength = length

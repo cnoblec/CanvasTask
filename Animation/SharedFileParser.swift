@@ -56,17 +56,14 @@ public class SharedFileParser
         var angle : Degrees = 0
         var colours : [String : Colour] = [:]
         
-        
-        
-        
         for (i, string) in data.enumerated()
         {
             let cleanString = string.components(separatedBy: "\n")
-            print(cleanString[0])
+//            print(cleanString[0])
             if cleanString[0] == "]" // if we have reached the end of a system add that to an array, and then clear the data
             {
                 lsys = LindenmayerSystem(angle: angle, axiom: axiom, rules: rules, generations: generations)
-                print("we have reached the end of a system")
+//                print("we have reached the end of a system")
                 lsyss.append(VisualizedLindenmayerSystem(with: lsys, length: length, lineReduction: reduction, width: width, widthReduction: widthReduction, x: x, y: y, direction: direction, colours: colours))
                 x = 0
                 y = 0
@@ -108,20 +105,24 @@ public class SharedFileParser
                 axiom = key[1]
             case "rules":
                 
+                
                 var newIndex = i+2
                 
+                var cleanData = data[newIndex].components(separatedBy: "\n")
+
                 var currentChar = ""
                 
                 var parts : [String] = []
                 
-                parts = data[newIndex].components(separatedBy: "=")
+                parts = cleanData[0].components(separatedBy: "=")
                 
                 var parsedKeys : [Character] = []
                 var parsedRules : [String] = []
                 
                 while currentChar != "}"
                 {
-                    parts = data[newIndex].components(separatedBy: "=")
+                    cleanData = data[newIndex].components(separatedBy: "\n")
+                    parts = cleanData[0].components(separatedBy: "=")
                     if parts[0] != "{" && parts[0] != "}"
                     {
                         parsedKeys.append(Character(parts[0]))

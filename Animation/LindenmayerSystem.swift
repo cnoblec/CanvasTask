@@ -55,7 +55,7 @@ public class LindenmayerSystem
                     
                     let unicodeScalar = String(character).unicodeScalars
                     switch character {
-                    case "+", "-", "[", "]":
+                    case "+", "-", "[", "]","1","2","3","4","5","6","7","8","9":
                         newWord.append(character)
                     default:
                         if unicodeScalar[unicodeScalar.startIndex].value >= 65 && unicodeScalar[unicodeScalar.startIndex].value <= 90 || unicodeScalar[unicodeScalar.startIndex].value >= 97 && unicodeScalar[unicodeScalar.startIndex].value <= 122

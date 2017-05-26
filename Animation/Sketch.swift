@@ -27,7 +27,7 @@ class Sketch : NSObject {
     // Create visualizations of other systems
     let largeKochIsland : VisualizedLindenmayerSystem
     
-    let Lsystems : [VisualizedLindenmayerSystem]
+    let VLsystems : [VisualizedLindenmayerSystem]
     
     // This runs once, equivalent to setup() in Processing
     override init() {
@@ -36,7 +36,7 @@ class Sketch : NSObject {
         
         file = SharedFileParser(path: "/Users/student/Desktop/test.txt")
         
-        Lsystems = file.parseFile()
+        VLsystems = file.parseFile()
         
 //        print(file.parseFile())
         // Set up a Koch snowflake
@@ -47,16 +47,16 @@ class Sketch : NSObject {
         
         // Set up a Koch Island
         kochIsland = LindenmayerSystem(angle: 20,
-                                       axiom: "F",
+                                       axiom: "2F",
                                        rules: ["F":["X[++F][+F][-F][--F]"], "X" : ["XX"]],
                                        generations: 5)
-        largeKochIsland = VisualizedLindenmayerSystem(with: kochIsland, length: 200, lineReduction: 2, x: 150, y: 20, direction: 90)
+        largeKochIsland = VisualizedLindenmayerSystem(with: kochIsland, length: 200, lineReduction: 2, x: 350, y: 20, direction: 90/*, colours: ["2" : Colour(hue: 132, saturation: 3, brightness: 98)]*/)
         // The frame rate can be adjusted; the default is 60 fps
         canvas.framesPerSecond = 120
         // "FFFFF[-------FFFF]F[------FFF][-------FFF][+++FF]F[-----FF]F"
-        triangle = LindenmayerSystem(angle: 10, axiom: "F",rules: ["F":["1/FF+F","1/F[F+FF]","1/F-FF"], "X": ["XX"]], generations: 10)
+        triangle = LindenmayerSystem(angle: 15, axiom: "1F",rules: ["F":["1/X+F[+++F]","1/Y-F","1/FF[---F]"], "X": ["1/F-X","1/XX[+++F--F]"], "Y" : ["1/F+Y[--F]","1/F+Y[++F-F]","1/YY"]], generations: 10)
                 
-        vistriangle = VisualizedLindenmayerSystem(with: triangle, length: 200, lineReduction: 2, width: 1, widthReduction: 1, x: 300, y: 200, direction: 90)
+        vistriangle = VisualizedLindenmayerSystem(with: triangle, length: 100, lineReduction: 1.7, width: 2, widthReduction: 1, x: 250, y: 500, direction: 270,colours: ["1": Colour(hue: 206,saturation: 14, brightness: 97)])
         
 //        canvas.render(system: vistriangle, generation: 8)
         
@@ -64,14 +64,16 @@ class Sketch : NSObject {
 //        {
 //            print(largeKochIsland.word[i])
 //        }
-        canvas.framesPerSecond = 60
+        canvas.framesPerSecond = 120
+        
+        print(VLsystems[1].rules)
     }
     
     // Runs repeatedly, equivalent to draw() in Processing
     func draw() {
         
         // Render the current system
-        canvas.renderAnimatedSystems(systems: [vistriangle], generations: [1])
+        canvas.renderAnimatedSystems(systems: [largeKochIsland,VLsystems[0]], generations: [6,4])
     }
     
     // Respond to the mouseDown event

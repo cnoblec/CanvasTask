@@ -141,12 +141,14 @@ public class EnhancedCanvas : Canvas {
                 break
             }
             self.lineColor = Color(hue: (newColor.hue), saturation: (newColor.saturation), brightness: (newColor.brightness), alpha: 100)
+            system.currentColour = self.lineColor
         case "[":
-            system.infoStack.append(VisualizedLindenmayerSystem.sysInfo(x: Float(system.x), y: Float(system.y), angle: system.currentAngle))
+            system.infoStack.append(VisualizedLindenmayerSystem.sysInfo(x: Float(system.x), y: Float(system.y), angle: system.currentAngle, colour: system.currentColour))
         case "]":
             system.x = (system.infoStack.last?.x)!
             system.y = (system.infoStack.last?.y)!
             system.currentAngle = (system.infoStack.last?.angle)!
+            system.currentColour = (system.infoStack.last?.colour)!
             system.infoStack.removeLast()
         default:
             // Do nothing for any another character in the word
