@@ -61,8 +61,9 @@ public class SharedFileParser
         
         for (i, string) in data.enumerated()
         {
-            print(string)
-            if string == "]" // if we have reached the end of a system add that to an array, and then clear the data
+            let cleanString = string.components(separatedBy: "\n")
+            print(cleanString[0])
+            if cleanString[0] == "]" // if we have reached the end of a system add that to an array, and then clear the data
             {
                 lsys = LindenmayerSystem(angle: angle, axiom: axiom, rules: rules, generations: generations)
                 print("we have reached the end of a system")

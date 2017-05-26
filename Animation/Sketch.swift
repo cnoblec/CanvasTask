@@ -71,7 +71,7 @@ class Sketch : NSObject {
     func draw() {
         
         // Render the current system
-//        canvas.renderAnimatedSystems(systems: Lsystems, generations: [1])
+        canvas.renderAnimatedSystems(systems: [vistriangle], generations: [1])
     }
     
     // Respond to the mouseDown event

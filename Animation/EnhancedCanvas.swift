@@ -17,7 +17,7 @@ public class EnhancedCanvas : Canvas {
         }
         
         // Change the line length
-        system.currentLength = Float( Double(system.initialLength) / pow(Double(system.lineReduction), Double(generation)) )
+        system.currentLength = Float(Double(system.initialLength) / pow(Double(system.lineReduction), Double(generation)) )
         
         system.currentWidth = Float(Double(system.initialWidth) / pow(Double(system.widthReduction),Double(generation)))
         
@@ -94,7 +94,7 @@ public class EnhancedCanvas : Canvas {
                 
                 // Change the line length
                 system.currentLength = Float(Double(system.initialLength) / pow(Double(system.lineReduction), Double(generation)) )
-                system.currentWidth = Float(Double(system.initialWidth) / pow(Double(system.widthReduction),Double(generation)))
+                system.currentWidth = Float(system.initialWidth) / pow(Float(system.widthReduction),Float(generation))
                 system.currentAngle = Degrees(system.direction)
             }
             
@@ -152,7 +152,7 @@ public class EnhancedCanvas : Canvas {
             // Do nothing for any another character in the word
             if unicodeScalar[unicodeScalar.startIndex].value >= 65 && unicodeScalar[unicodeScalar.startIndex].value <= 90
             {
-                self.drawLine(fromX: system.x, fromY: system.y, toX: updatedX, toY: updatedY, lineWidth: Int(system.currentWidth))
+                self.drawLine(fromX: system.x, fromY: system.y, toX: updatedX, toY: updatedY, lineWidth: Int(system.initialWidth))
                 system.x = updatedX
                 system.y = updatedY
             }
