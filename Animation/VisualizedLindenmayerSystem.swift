@@ -41,7 +41,7 @@ public class VisualizedLindenmayerSystem : LindenmayerSystem
                 x: Float,
                 y: Float,
                 direction: Float,
-                colours : [String : Colour])
+                colours : [String : Colour] = ["1":Colour(hue: 0, saturation: 0, brightness: 0)])
     {
         // Initialize stored properties
         self.initialLength = length

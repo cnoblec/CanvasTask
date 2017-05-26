@@ -11,7 +11,7 @@ import Foundation
 public class SharedFileParser
 {
     var filePath : String
-
+    
     init(path: String)
     {
         self.filePath = path
@@ -28,16 +28,124 @@ public class SharedFileParser
         var components : [String] = []
         
         // Process each line of the input file
-        for (number, line) in reader.enumerated() {
-            
-            // DEBUG
-            print("Parsing line \(number)")
+        for (_, line) in reader.enumerated() {
             
             // Build an array of each component from the file
-            components.append(contentsOf: line.components(separatedBy: " "))
+            components.append(contentsOf: line.components(separatedBy: "\r"))
             
         }
-        print(components)
+        //        print(components)
+        createSystemsWith(data: components)
+    }
+    
+    func createSystemsWith(data: [String]) //-> [VisualizedLindenmayerSystem]
+    {
+        var x : Float = 0
+        var y : Float = 0
+        var axiom : String = ""
+        var rules : [Character : [String]] = [:]
+        var generations : Int = 0
+        var direction : Float = 0
+        var length : Float = 0
+        var reduction : Float = 0
+        var width : Float = 0
+        var widthReduction : Float = 0
+        var angle : Degrees = 0
+        var colours : [String : Colour] = [:]
+        
+        var systems : [VisualizedLindenmayerSystem] = []
+        
+        print(data)
+        
+        for (i, string) in data.enumerated()
+        {
+            if string == "]" // if we have reached the end of a system add that to an array, and then clear the data
+            {
+                let lSys = LindenmayerSystem(angle: angle, axiom: axiom, rules: rules, generations: generations)
+                let vLSys = VisualizedLindenmayerSystem(with: lSys, length: length, lineReduction: reduction, width: width, widthReduction: widthReduction, x: x, y: y, direction: Float(direction), colours: colours)
+                systems.append(vLSys)
+                x = 0
+                y = 0
+                axiom = ""
+                rules = [:]
+                generations = 0
+                direction = 0
+                length = 0
+                reduction = 0
+                width = 1
+                widthReduction = 1
+                angle = 0
+                colours = [:]
+            }
+            
+            let key = string.components(separatedBy: ":")
+            switch key[0] {
+            case "x":
+                x = Float(key[1])!
+            case "y":
+                y = Float(key[1])!
+            case "length":
+                length = Float(key[1])!
+            case "direction":
+                direction = Float(key[1])!
+            case "length_reduction":
+                reduction = Float(key[1])!
+            case "thickness":
+                width = Float(key[1])!
+            case "thickness_reduction":
+                widthReduction = Float(key[1])!
+            case "axiom":
+                axiom = key[1]
+            case "rules":
+                
+                var newIndex = i+2
+                
+                var currentChar = ""
+                
+                var parts : [String] = []
+                
+                parts = data[newIndex].components(separatedBy: "=")
+                
+                var parsedKeys : [Character] = []
+                var parsedRules : [String] = []
+                
+                while currentChar != "}"
+                {
+                    parts = data[newIndex].components(separatedBy: "=")
+                    if parts[0] != "{" && parts[0] != "}"
+                    {
+                        parsedKeys.append(Character(parts[0]))
+                        parsedRules.append(parts[1])
+                    }
+                    currentChar = data[newIndex]
+                    newIndex += 1
+                }
+                
+                for (i,parsedKey) in parsedKeys.enumerated()
+                {
+                    if (rules[parsedKey] != nil) // if that key exists, add the values
+                    {
+                        rules[parsedKey]?.append(parsedRules[i])
+                    } else {
+                        // if the dictionary does not have that key, create it with the corresponding value
+                        rules[parsedKey] = [parsedRules[i]]
+                    }
+                }
+                
+                // here we have an array that contains each key that we will need in our rule set
+                print(rules)
+                parts.removeAll()
+                parsedKeys.removeAll()
+            case "y":
+                widthReduction = Float(key[1])!
+            case "y":
+                widthReduction = Float(key[1])!
+            case "y":
+                widthReduction = Float(key[1])!
+            default: break
+            }
+            
+        }
     }
 }
 

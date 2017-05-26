@@ -1,43 +1,25 @@
-//: Playground - noun: a place where people can play
+let data = ["{", "F=1/F-[1+F]F+[2-F]", "F=1/F-[1+F]F+[F]", "F=1/-[1-F]F+[2-F]", "X=1/F[3+FFF]F[1-F]", "}"]
 
-import Cocoa
+var char = ""
+var newIndex = 0
 
-var str = "Hello, playground"
+var characters : [Character] = []
 
-var ruleSet = ["F" : ["+F","-F"],"X" : ["+X"]]
-
-var word = "F"
-
-var newWord = ""
-
-//for character in word.characters
-//{
-//    
-//    let unicodeScalar = String(character).unicodeScalars
-//    
-//    switch character {
-//    case "+", "-", "[", "]":
-//        newWord.append(character)
-//    default:
-//        let random = Float(arc4random_uniform(100)) / 100
-//        if unicodeScalar[unicodeScalar.startIndex].value >= 65 && unicodeScalar[unicodeScalar.startIndex].value <= 90 || unicodeScalar[unicodeScalar.startIndex].value >= 97 && unicodeScalar[unicodeScalar.startIndex].value <= 122
-//        {
-//            if ruleSet[character] == ruleSet[character] {
-//                newWord.append(ruleSet[character])
-//            }
-//        }
-//    }
-//}
-
-let array = ruleSet["F"]
-
-let random = Int(arc4random_uniform(UInt32((array?.count)!)))
-
-//func randSuccesor(rules: [String]) -> String
-//{
-//}
-
-var example = "1/F+FFFF+F"
-
-example.components(separatedBy: "/")
-
+var parts : [String] = []
+while char != "}"
+{
+//    parts = data[newIndex].components(separatedBy: "=")
+    
+    for char in characters
+    {
+        if Character(parts[0]) == char
+        {
+            
+        } else {
+            characters.append(char)
+        }
+    }
+    
+    char = data[newIndex]
+    newIndex += 1
+}
