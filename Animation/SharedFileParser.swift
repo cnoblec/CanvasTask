@@ -12,12 +12,16 @@ public class SharedFileParser
 {
     var filePath : String
     
+    var lsys : LindenmayerSystem = LindenmayerSystem(angle: 60, axiom: "F+F+F", rules: ["F":["F[+F]FF"]], generations: 3)
+    
+    var lsyss : [VisualizedLindenmayerSystem] = []
+    
     init(path: String)
     {
         self.filePath = path
     }
     
-    func parseFile()// -> [VisualizedLindenmayerSystem]
+    func parseFile() -> [VisualizedLindenmayerSystem]
     {
         guard let reader = LineReader(path: filePath) else {
             print("Cannot open input file")
@@ -34,11 +38,10 @@ public class SharedFileParser
             components.append(contentsOf: line.components(separatedBy: "\r"))
             
         }
-        //        print(components)
-        createSystemsWith(data: components)
+        return createSystemsWith(data: components)
     }
     
-    func createSystemsWith(data: [String]) //-> [VisualizedLindenmayerSystem]
+    func createSystemsWith(data: [String]) -> [VisualizedLindenmayerSystem]
     {
         var x : Float = 0
         var y : Float = 0
@@ -53,17 +56,17 @@ public class SharedFileParser
         var angle : Degrees = 0
         var colours : [String : Colour] = [:]
         
-        var systems : [VisualizedLindenmayerSystem] = []
         
         
         
         for (i, string) in data.enumerated()
         {
+            print(string)
             if string == "]" // if we have reached the end of a system add that to an array, and then clear the data
             {
-                let lSys = LindenmayerSystem(angle: angle, axiom: axiom, rules: rules, generations: generations)
-                let vLSys = VisualizedLindenmayerSystem(with: lSys, length: length, lineReduction: reduction, width: width, widthReduction: widthReduction, x: x, y: y, direction: Float(direction), colours: colours)
-                systems.append(vLSys)
+                lsys = LindenmayerSystem(angle: angle, axiom: axiom, rules: rules, generations: generations)
+                print("we have reached the end of a system")
+                lsyss.append(VisualizedLindenmayerSystem(with: lsys, length: length, lineReduction: reduction, width: width, widthReduction: widthReduction, x: x, y: y, direction: direction, colours: colours))
                 x = 0
                 y = 0
                 axiom = ""
@@ -85,7 +88,6 @@ public class SharedFileParser
                 clean = k.components(separatedBy: "\n")
                 key[i] = clean[0]
             }
-            print(key)
             switch key[0] {
             case "x":
                 x = Float(key[1])!
@@ -138,11 +140,10 @@ public class SharedFileParser
                         rules[parsedKey] = [parsedRules[i]]
                     }
                 }
-                
                 // here we have an array that contains each key that we will need in our rule set
                 parts.removeAll()
                 parsedKeys.removeAll()
-            case "colours":
+            case "colors":
                 var newIndex = i+2
                 
                 var currentChar = ""
@@ -168,26 +169,23 @@ public class SharedFileParser
                 
                 for (i,parsedValue) in parsedCValues.enumerated()
                 {
-//                    if (rules[parsedColour] != nil) // if that key exists, add the values
-//                    {
-//                        rules[parsedColour]?.append(parsedColours[i])
-//                    } else {
-//                        // if the dictionary does not have that key, create it with the corresponding value
-//                        rules[parsedColour] = [parsedColours[i]]
-//                    }
-//                    colours[parsedValue] = [parsedColours[i]]
-                    print(parsedValue)
-
+                    let arrayOfInfo = parsedColours[i]
+                    
+                    let hsb = arrayOfInfo.components(separatedBy: ",")
+                    
+                    let aColour = Colour(hue: Float(hsb[0])!, saturation: Float(hsb[1])!, brightness: Float(hsb[2])!)
+                    colours[String(parsedValue)] = aColour
                 }
-
-            case "y":
-                widthReduction = Float(key[1])!
-            case "y":
-                widthReduction = Float(key[1])!
+            case "angle":
+                angle = Degrees(Float(key[1])!)
+            case "generations":
+                generations = Int(key[1])!
             default: break
             }
-            
+
         }
+        
+        return lsyss
     }
 }
 

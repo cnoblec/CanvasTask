@@ -13,7 +13,6 @@ public func randSuccesor(successors: [String]) -> String
     var probArray :[Int] = []
     var addativeArray : [Int] = []
     var max : Int = 0
-    var keyArray : [String] = []
     for successor in successors
     {
         let components = successor.components(separatedBy: "/")
@@ -21,7 +20,7 @@ public func randSuccesor(successors: [String]) -> String
         {
         probArray.append(IntofString)
         }
-        keyArray.append(components[1])
+        
     }
     
     for i in probArray

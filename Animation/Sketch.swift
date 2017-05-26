@@ -27,7 +27,7 @@ class Sketch : NSObject {
     // Create visualizations of other systems
     let largeKochIsland : VisualizedLindenmayerSystem
     
-//    let Lsystems : [VisualizedLindenmayerSystem]
+    let Lsystems : [VisualizedLindenmayerSystem]
     
     // This runs once, equivalent to setup() in Processing
     override init() {
@@ -36,9 +36,9 @@ class Sketch : NSObject {
         
         file = SharedFileParser(path: "/Users/student/Desktop/test.txt")
         
-        file.parseFile()
+        Lsystems = file.parseFile()
         
-        
+//        print(file.parseFile())
         // Set up a Koch snowflake
         kochSnowflake = LindenmayerSystem(angle: 60,
                                           axiom: "F++F++F",
@@ -71,7 +71,7 @@ class Sketch : NSObject {
     func draw() {
         
         // Render the current system
-        canvas.renderAnimatedSystems(systems: [vistriangle,largeKochIsland], generations: [7,4])
+//        canvas.renderAnimatedSystems(systems: Lsystems, generations: [1])
     }
     
     // Respond to the mouseDown event
