@@ -55,7 +55,7 @@ public class SharedFileParser
         
         var systems : [VisualizedLindenmayerSystem] = []
         
-        print(data)
+        
         
         for (i, string) in data.enumerated()
         {
@@ -78,7 +78,14 @@ public class SharedFileParser
                 colours = [:]
             }
             
-            let key = string.components(separatedBy: ":")
+            var key = string.components(separatedBy: ":")
+            for (i, k) in key.enumerated()
+            {
+                let clean : [String]
+                clean = k.components(separatedBy: "\n")
+                key[i] = clean[0]
+            }
+            print(key)
             switch key[0] {
             case "x":
                 x = Float(key[1])!
@@ -133,11 +140,46 @@ public class SharedFileParser
                 }
                 
                 // here we have an array that contains each key that we will need in our rule set
-                print(rules)
                 parts.removeAll()
                 parsedKeys.removeAll()
-            case "y":
-                widthReduction = Float(key[1])!
+            case "colours":
+                var newIndex = i+2
+                
+                var currentChar = ""
+                
+                var parts : [String] = []
+                
+                parts = data[newIndex].components(separatedBy: "=")
+                
+                var parsedCValues : [Character] = []
+                var parsedColours : [String] = []
+                
+                while currentChar != "}"
+                {
+                    parts = data[newIndex].components(separatedBy: "=")
+                    if parts[0] != "{" && parts[0] != "}"
+                    {
+                        parsedCValues.append(Character(parts[0]))
+                        parsedColours.append(parts[1])
+                    }
+                    currentChar = data[newIndex]
+                    newIndex += 1
+                }
+                
+                for (i,parsedValue) in parsedCValues.enumerated()
+                {
+//                    if (rules[parsedColour] != nil) // if that key exists, add the values
+//                    {
+//                        rules[parsedColour]?.append(parsedColours[i])
+//                    } else {
+//                        // if the dictionary does not have that key, create it with the corresponding value
+//                        rules[parsedColour] = [parsedColours[i]]
+//                    }
+//                    colours[parsedValue] = [parsedColours[i]]
+                    print(parsedValue)
+
+                }
+
             case "y":
                 widthReduction = Float(key[1])!
             case "y":
