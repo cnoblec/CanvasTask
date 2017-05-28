@@ -77,7 +77,7 @@ public class EnhancedCanvas : Canvas {
         for (i,system) in systems.enumerated()
         {
             // Verify that generation that was asked to be rendered actually exists
-            
+            self.lineColor = system.currentColour
             var generation : Int
             if generations.count > i
             {
@@ -118,7 +118,7 @@ public class EnhancedCanvas : Canvas {
     }
     
     func interpret(character : Character, forThis system : VisualizedLindenmayerSystem) {
-        let defaultColour = Color(hue: 0, saturation: 0, brightness: 0, alpha: 100)
+        // let defaultColour = Color(hue: 0, saturation: 0, brightness: 0, alpha: 100)
         
         // update the x and y positoins using trig to find how far they move
         let updatedX = Float(CGFloat(system.x) + cos( system.currentAngle * CGFloat(M_PI)/180) * CGFloat(system.currentLength))
@@ -135,12 +135,9 @@ public class EnhancedCanvas : Canvas {
             // Turn right
             system.currentAngle -= system.angle
         case "1","2","3","4","5","6":
-            guard let newColor = system.colours[String(character)] else
-            {
-                self.lineColor = Color(hue: defaultColour.hue, saturation: defaultColour.saturation, brightness: defaultColour.brightness, alpha: defaultColour.alpha)
-                break
+            if let newColor = system.colours[String(character)] {
+                self.lineColor = Color(hue: newColor.hue, saturation: newColor.saturation, brightness: newColor.brightness, alpha: 100)
             }
-            self.lineColor = Color(hue: (newColor.hue), saturation: (newColor.saturation), brightness: (newColor.brightness), alpha: 100)
             system.currentColour = self.lineColor
         case "[":
             system.infoStack.append(VisualizedLindenmayerSystem.sysInfo(x: Float(system.x), y: Float(system.y), angle: system.currentAngle, colour: system.currentColour))
