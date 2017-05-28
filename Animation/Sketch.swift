@@ -69,14 +69,14 @@ class Sketch : NSObject {
 //        }
         canvas.framesPerSecond = 120
         
-        print(VLsystems[1].rules)
+        //print(VLsystems[1].rules)
     }
     
     // Runs repeatedly, equivalent to draw() in Processing
     func draw() {
         
         // Render the current system
-        canvas.renderAnimatedSystems(systems: [vistriangle,largeKochIsland], generations: [5,4])
+        canvas.renderAnimatedSystems(systems: [VLsystems[0]], generations: [5])
     }
     
     // Respond to the mouseDown event

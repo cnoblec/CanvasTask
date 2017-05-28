@@ -43,6 +43,8 @@ public class SharedFileParser
     
     func createSystemsWith(data: [String]) -> [VisualizedLindenmayerSystem]
     {
+        var author : String = ""
+        var description : String = ""
         var x : Float = 0
         var y : Float = 0
         var axiom : String = ""
@@ -55,6 +57,8 @@ public class SharedFileParser
         var widthReduction : Float = 0
         var angle : Degrees = 0
         var colours : [String : Colour] = [:]
+        var ruleFlag = false
+        var invalidWidth = false
         
         for (i, string) in data.enumerated()
         {
@@ -62,9 +66,21 @@ public class SharedFileParser
 //            print(cleanString[0])
             if cleanString[0] == "]" // if we have reached the end of a system add that to an array, and then clear the data
             {
-                lsys = LindenmayerSystem(angle: angle, axiom: axiom, rules: rules, generations: generations)
-//                print("we have reached the end of a system")
-                lsyss.append(VisualizedLindenmayerSystem(with: lsys, length: length, lineReduction: reduction, width: width, widthReduction: widthReduction, x: x, y: y, direction: direction, colours: colours))
+                
+                if width != 0 && widthReduction == 0
+                {
+                    invalidWidth = true
+                }
+                
+                if (author == "" || axiom == "" || description == "" || angle == Degrees(0) || ruleFlag == false || generations == 0 || length == 0 || reduction == 0 || invalidWidth == true)
+                {
+                    print("you are missing some of the required inputs\nthis L system will not run")
+                } else {
+                    lsys = LindenmayerSystem(angle: angle, axiom: axiom, rules: rules, generations: generations)
+                    //                print("we have reached the end of a system")
+                    lsyss.append(VisualizedLindenmayerSystem(with: lsys, length: length, lineReduction: reduction, width: width, widthReduction: widthReduction, x: x, y: y, direction: direction, colours: colours))
+                }
+                
                 x = 0
                 y = 0
                 axiom = ""
@@ -77,6 +93,8 @@ public class SharedFileParser
                 widthReduction = 1
                 angle = 0
                 colours = [:]
+                ruleFlag = false
+                invalidWidth = false
             }
             
             var key = string.components(separatedBy: ":")
@@ -104,7 +122,7 @@ public class SharedFileParser
             case "axiom":
                 axiom = key[1]
             case "rules":
-                
+                ruleFlag = true
                 
                 var newIndex = i+2
                 
@@ -182,9 +200,13 @@ public class SharedFileParser
                 angle = Degrees(Float(key[1])!)
             case "generations":
                 generations = Int(key[1])!
+            case "author":
+                author = String(key[1])
+            case "description":
+                description = String(key[1])
             default: break
             }
-
+            
         }
         
         return lsyss
