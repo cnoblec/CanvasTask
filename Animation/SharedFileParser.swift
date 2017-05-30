@@ -62,25 +62,27 @@ public class SharedFileParser
         
         for (i, string) in data.enumerated()
         {
+            // this just allows us to get rid of any unwated new line characters
             let cleanString = string.components(separatedBy: "\n")
-//            print(cleanString[0])
+            //            print(cleanString[0])
             if cleanString[0] == "]" // if we have reached the end of a system add that to an array, and then clear the data
             {
-                
+                // part of error checking to see if a width value was passed, that there was also a width reduction
                 if width != 0 && widthReduction == 0
                 {
                     invalidWidth = true
                 }
-                
+                // the main checking of all required fields
                 if (author == "" || axiom == "" || description == "" || angle == Degrees(0) || ruleFlag == false || generations == 0 || length == 0 || reduction == 0 || invalidWidth == true)
                 {
                     print("you are missing some of the required inputs\nthis L system will not run")
                 } else {
+                    // if all those casses were not true, append to the array of Visualized Lindenmayer Systems
                     lsys = LindenmayerSystem(angle: angle, axiom: axiom, rules: rules, generations: generations)
                     //                print("we have reached the end of a system")
                     lsyss.append(VisualizedLindenmayerSystem(with: lsys, length: length, lineReduction: reduction, width: width, widthReduction: widthReduction, x: x, y: y, direction: direction, colours: colours))
                 }
-                
+                // reset all the values between systems
                 x = 0
                 y = 0
                 axiom = ""
@@ -96,14 +98,16 @@ public class SharedFileParser
                 ruleFlag = false
                 invalidWidth = false
             }
-            
             var key = string.components(separatedBy: ":")
+            
+            // to clean the broken up string to get rid of any new lines
             for (i, k) in key.enumerated()
             {
                 let clean : [String]
                 clean = k.components(separatedBy: "\n")
                 key[i] = clean[0]
             }
+            // this is a switch for each of the possible keys, any others are invalid and will do nothing
             switch key[0] {
             case "x":
                 x = Float(key[1])!
@@ -123,30 +127,32 @@ public class SharedFileParser
                 axiom = key[1]
             case "rules":
                 ruleFlag = true
-                
+                // this points to where the rules actually start (skip the {)
                 var newIndex = i+2
+                // again to remove any unwated new line characters
+                var fullRules = data[newIndex].components(separatedBy: "\n")
+                //
+                var fullRulesSep : [String] = []
                 
-                var cleanData = data[newIndex].components(separatedBy: "\n")
-
-                var currentChar = ""
-                
-                var parts : [String] = []
-                
-                parts = cleanData[0].components(separatedBy: "=")
+                fullRulesSep = fullRules[0].components(separatedBy: "=")
                 
                 var parsedKeys : [Character] = []
                 var parsedRules : [String] = []
                 
-                while currentChar != "}"
+                
+                // while we have not found the end of the rules
+                while fullRulesSep[0] != "}"
                 {
-                    cleanData = data[newIndex].components(separatedBy: "\n")
-                    parts = cleanData[0].components(separatedBy: "=")
-                    if parts[0] != "{" && parts[0] != "}"
+                    
+                    fullRules = data[newIndex].components(separatedBy: "\n")
+                    fullRulesSep = fullRules[0].components(separatedBy: "=")
+                    // we need to get rid of new lines and equal signs to obtain the important information
+                    // print(fullRulesSep[0]) for debugging
+                    if fullRulesSep[0] != "{" && fullRulesSep[0] != "}"// as long as it is a letter we will append it to our key and rule parallel arrays
                     {
-                        parsedKeys.append(Character(parts[0]))
-                        parsedRules.append(parts[1])
+                        parsedKeys.append(Character(fullRulesSep[0]))
+                        parsedRules.append(fullRulesSep[1])
                     }
-                    currentChar = data[newIndex]
                     newIndex += 1
                 }
                 
@@ -160,28 +166,30 @@ public class SharedFileParser
                         rules[parsedKey] = [parsedRules[i]]
                     }
                 }
-                // here we have an array that contains each key that we will need in our rule set
-                parts.removeAll()
+                // we must empty these between each system
+                fullRulesSep.removeAll()
                 parsedKeys.removeAll()
             case "colors":
+                // similar to the rules, we skip the first {
                 var newIndex = i+2
                 
                 var currentChar = ""
                 
-                var parts : [String] = []
+                var fullColoursSep : [String] = []
                 
-                parts = data[newIndex].components(separatedBy: "=")
+                fullColoursSep = data[newIndex].components(separatedBy: "=")
                 
                 var parsedCValues : [Character] = []
                 var parsedColours : [String] = []
                 
-                while currentChar != "}"
+                while currentChar != "}" // similar to the last one
                 {
-                    parts = data[newIndex].components(separatedBy: "=")
-                    if parts[0] != "{" && parts[0] != "}"
+                    fullColoursSep = data[newIndex].components(separatedBy: "=")
+                    
+                    if fullColoursSep[0] != "{" && fullColoursSep[0] != "}" //
                     {
-                        parsedCValues.append(Character(parts[0]))
-                        parsedColours.append(parts[1])
+                        parsedCValues.append(Character(fullColoursSep[0]))
+                        parsedColours.append(fullColoursSep[1])
                     }
                     currentChar = data[newIndex]
                     newIndex += 1

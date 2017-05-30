@@ -28,6 +28,11 @@ class Sketch : NSObject {
     let largeKochIsland : VisualizedLindenmayerSystem
     
     let VLsystems : [VisualizedLindenmayerSystem]
+    let cloud1 : VisualizedLindenmayerSystem
+    let cloud2 : VisualizedLindenmayerSystem
+    
+    let sSystems : [VisualizedLindenmayerSystem]
+    let sSystemGens : [Int]
     
     // This runs once, equivalent to setup() in Processing
     override init() {
@@ -41,7 +46,7 @@ class Sketch : NSObject {
 //        print(file.parseFile())
         // Set up a Koch snowflake
         kochSnowflake = LindenmayerSystem(angle: 120,
-                                          axiom: "F",
+                                          axiom: "F+F+F",
                                           rules: ["F":["F[+F]F"]],
                                           generations: 5)
         
@@ -58,7 +63,7 @@ class Sketch : NSObject {
         
         canvas.framesPerSecond = 120
         // "FFFFF[-------FFFF]F[------FFF][-------FFF][+++FF]F[-----FF]F"
-        triangle = LindenmayerSystem(angle: 15, axiom: "1F",rules: ["F":["1/1X+F[+++F]","1/1Y-F","1/1F1F[---1F]"], "X": ["1/1F-1X","1/1X1X[+++1F--1F]"], "Y" : ["1/1F+1Y[--F]","1/1F+1Y[++1F-1F]","1/1Y1Y"]], generations: 10)
+        triangle = LindenmayerSystem(angle: 15, axiom: "1F",rules: ["F":["1/X+F[+++F]","1/Y-F","1/FF[---F]"], "X": ["1/F-X","1/XX[+++F--F]"], "Y" : ["1/F+Y[--F]","1/F+Y[++F-F]","1/YY"]], generations: 10)
                 
         vistriangle = VisualizedLindenmayerSystem(with: triangle, length: 100, lineReduction: 1.7, width: 2, widthReduction: 1, x: 250, y: 500, direction: 270,colours: ["1": Colour(hue: 206,saturation: 14, brightness: 97)])
         
@@ -70,13 +75,32 @@ class Sketch : NSObject {
         canvas.framesPerSecond = 120
         
         //print(VLsystems[1].rules)
+        VLsystems[0].initialWidth = 2
+        
+        cloud1 = VLsystems[2]
+        
+        cloud2 = VLsystems[2]
+        
+        canvas.fillColor = Color(hue: 0, saturation: 0, brightness: 0, alpha: 100)
+        
+        canvas.drawRectangle(bottomLeftX: 0, bottomLeftY: 0, width: canvas.width, height: canvas.height)
+        
+        canvas.fillColor = Color(hue: 54, saturation: 77, brightness: 95, alpha: 100)
+
+        canvas.drawRectangle(bottomLeftX: 0, bottomLeftY: 0, width: canvas.width, height: canvas.height / 5)
+        
+        let gradientMaker = Gradient(on: canvas)
+        gradientMaker.makeGradient(lowerLeftX: 0, lowerLeftY: 0, from: 240, to: 300, brightness: 50)
+
+        sSystems = [VLsystems[2],VLsystems[3],VLsystems[4],VLsystems[0],VLsystems[5],VLsystems[7],VLsystems[8],VLsystems[9]]
+        sSystemGens = [2,2,2,5,5,4,4,4]
     }
     
     // Runs repeatedly, equivalent to draw() in Processing
     func draw() {
         
         // Render the current system
-        canvas.renderAnimatedSystems(systems: [VLsystems[0]], generations: [5])
+        canvas.renderAnimatedSystems(systems: sSystems, generations: sSystemGens)
     }
     
     // Respond to the mouseDown event

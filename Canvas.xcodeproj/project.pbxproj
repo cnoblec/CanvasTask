@@ -10,6 +10,7 @@
 		3F175EFE1EBA526A00DC7884 /* Colour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F175EFD1EBA526A00DC7884 /* Colour.swift */; };
 		3F2117681ED5C1640081AC27 /* LineReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F500C341ED3A5E80027D773 /* LineReader.swift */; };
 		3F2117691ED5C1640081AC27 /* LineWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F500C351ED3A5E80027D773 /* LineWriter.swift */; };
+		3F4FB4E81EDDA7C80043E694 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4FB4E71EDDA7C80043E694 /* Gradient.swift */; };
 		3F771CCB1ED5B9A900E278E8 /* SharedFileParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F771CCA1ED5B9A900E278E8 /* SharedFileParser.swift */; };
 		3FE33D1C1EBD0EC000148233 /* Probability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE33D1B1EBD0EC000148233 /* Probability.swift */; };
 		81064A0A1C130A10007ED524 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81064A091C130A10007ED524 /* AppDelegate.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		3F175EFD1EBA526A00DC7884 /* Colour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colour.swift; sourceTree = "<group>"; };
+		3F4FB4E71EDDA7C80043E694 /* Gradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
 		3F500C341ED3A5E80027D773 /* LineReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineReader.swift; sourceTree = "<group>"; };
 		3F500C351ED3A5E80027D773 /* LineWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineWriter.swift; sourceTree = "<group>"; };
 		3F771CCA1ED5B9A900E278E8 /* SharedFileParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedFileParser.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				81064A0D1C130A10007ED524 /* Assets.xcassets */,
 				81064A0F1C130A10007ED524 /* Main.storyboard */,
 				81064A121C130A10007ED524 /* Info.plist */,
+				3F4FB4E71EDDA7C80043E694 /* Gradient.swift */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 				81F1943C1EABB91100832CA6 /* EnhancedCanvas.swift in Sources */,
 				81064A1C1C132DA2007ED524 /* Sketch.swift in Sources */,
 				81064A0A1C130A10007ED524 /* AppDelegate.swift in Sources */,
+				3F4FB4E81EDDA7C80043E694 /* Gradient.swift in Sources */,
 				3FE33D1C1EBD0EC000148233 /* Probability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
