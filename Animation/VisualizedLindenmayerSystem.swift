@@ -16,7 +16,6 @@ public class VisualizedLindenmayerSystem : LindenmayerSystem
         var x : Float
         var y : Float
         var angle : Degrees
-        var colour : Color
     }
     
     var initialLength : Float               // initial line segment length
