@@ -100,7 +100,7 @@ class Sketch : NSObject {
     func draw() {
         
         // Render the current system
-        canvas.renderAnimatedSystems(systems: sSystems, generations: sSystemGens)
+        canvas.renderAnimatedSystems(systems: [largeKochIsland], generations: [4])
     }
     
     // Respond to the mouseDown event

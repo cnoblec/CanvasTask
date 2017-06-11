@@ -11,6 +11,7 @@
 		3F2117681ED5C1640081AC27 /* LineReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F500C341ED3A5E80027D773 /* LineReader.swift */; };
 		3F2117691ED5C1640081AC27 /* LineWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F500C351ED3A5E80027D773 /* LineWriter.swift */; };
 		3F4FB4E81EDDA7C80043E694 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4FB4E71EDDA7C80043E694 /* Gradient.swift */; };
+		3F65933C1EEDE9B5004D014D /* Lsystems.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F65933B1EEDE9B5004D014D /* Lsystems.txt */; };
 		3F771CCB1ED5B9A900E278E8 /* SharedFileParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F771CCA1ED5B9A900E278E8 /* SharedFileParser.swift */; };
 		3FE33D1C1EBD0EC000148233 /* Probability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE33D1B1EBD0EC000148233 /* Probability.swift */; };
 		81064A0A1C130A10007ED524 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81064A091C130A10007ED524 /* AppDelegate.swift */; };
@@ -29,6 +30,7 @@
 		3F4FB4E71EDDA7C80043E694 /* Gradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
 		3F500C341ED3A5E80027D773 /* LineReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineReader.swift; sourceTree = "<group>"; };
 		3F500C351ED3A5E80027D773 /* LineWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineWriter.swift; sourceTree = "<group>"; };
+		3F65933B1EEDE9B5004D014D /* Lsystems.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Lsystems.txt; sourceTree = "<group>"; };
 		3F771CCA1ED5B9A900E278E8 /* SharedFileParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedFileParser.swift; sourceTree = "<group>"; };
 		3FA8BAF71EC3942B009D1123 /* MultiRuleTest.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MultiRuleTest.playground; sourceTree = "<group>"; };
 		3FE33D1B1EBD0EC000148233 /* Probability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Probability.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				81064A091C130A10007ED524 /* AppDelegate.swift */,
 				81064A0B1C130A10007ED524 /* ViewController.swift */,
 				81064A0D1C130A10007ED524 /* Assets.xcassets */,
+				3F65933B1EEDE9B5004D014D /* Lsystems.txt */,
 				81064A0F1C130A10007ED524 /* Main.storyboard */,
 				81064A121C130A10007ED524 /* Info.plist */,
 				3F4FB4E71EDDA7C80043E694 /* Gradient.swift */,
@@ -167,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81064A0E1C130A10007ED524 /* Assets.xcassets in Resources */,
+				3F65933C1EEDE9B5004D014D /* Lsystems.txt in Resources */,
 				81064A111C130A10007ED524 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

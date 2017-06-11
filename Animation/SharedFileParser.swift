@@ -132,9 +132,7 @@ public class SharedFileParser
                 // again to remove any unwated new line characters
                 var fullRules = data[newIndex].components(separatedBy: "\n")
                 //
-                var fullRulesSep : [String] = []
-                
-                fullRulesSep = fullRules[0].components(separatedBy: "=")
+                var fullRulesSep = fullRules[0].components(separatedBy: "=")
                 
                 var parsedKeys : [Character] = []
                 var parsedRules : [String] = []
@@ -176,8 +174,6 @@ public class SharedFileParser
                 var currentChar = ""
                 
                 var fullColoursSep : [String] = []
-                
-                fullColoursSep = data[newIndex].components(separatedBy: "=")
                 
                 var parsedCValues : [Character] = []
                 var parsedColours : [String] = []
