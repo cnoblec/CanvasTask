@@ -70,7 +70,7 @@ public class LindenmayerSystem
                             }
                         }
                     }
-                    // just copy what's in the existing word to the new word
+                    // just copy what's in the existing word to new word
                 }
                 
                 // Add the re-written word to the system
