@@ -43,14 +43,13 @@ class Sketch : NSObject {
         
         VLsystems = file.parseFile()
         
-//        print(file.parseFile())
         // Set up a Koch snowflake
         kochSnowflake = LindenmayerSystem(angle: 120,
-                                          axiom: "F+F+F",
+                                          axiom: "1F+F+F",
                                           rules: ["F":["F[+F]F"]],
                                           generations: 5)
         
-        sierpinski = VisualizedLindenmayerSystem(with: kochSnowflake, length: 200, lineReduction: 2, width: 1, widthReduction: 1, x: 50, y: 50, direction: 0)
+        sierpinski = VisualizedLindenmayerSystem(with: kochSnowflake, length: 200, lineReduction: 2, width: 1, widthReduction: 1, x: 50, y: 50, direction: 0, colours: ["1" : Colour(hue: 51, saturation: 100, brightness: 100)])
         // Set up a Koch Island
         kochIsland = LindenmayerSystem(angle: 20,
                                        axiom: "1F",
@@ -62,19 +61,13 @@ class Sketch : NSObject {
         // "Faster, Faster, until the thrill of speed overcomes the fear of death." Hunter S. Thompson
         
         canvas.framesPerSecond = 120
-        // "FFFFF[-------FFFF]F[------FFF][-------FFF][+++FF]F[-----FF]F"
         triangle = LindenmayerSystem(angle: 15, axiom: "1F",rules: ["F":["1/X+F[+++F]","1/Y-F","1/FF[---F]"], "X": ["1/F-X","1/XX[+++F--F]"], "Y" : ["1/F+Y[--F]","1/F+Y[++F-F]","1/YY"]], generations: 10)
                 
         vistriangle = VisualizedLindenmayerSystem(with: triangle, length: 100, lineReduction: 1.7, width: 2, widthReduction: 1, x: 250, y: 500, direction: 270,colours: ["1": Colour(hue: 206,saturation: 14, brightness: 97)])
         
-//        canvas.render(system: vistriangle, generation: 8)
-//        for (i, _) in largeKochIsland.word.enumerated()
-//        {
-//            print(largeKochIsland.word[i])
-//        }
+
         canvas.framesPerSecond = 120
         
-        //print(VLsystems[1].rules)
         VLsystems[0].initialWidth = 2
         
         cloud1 = VLsystems[2]
@@ -100,7 +93,7 @@ class Sketch : NSObject {
     func draw() {
         
         // Render the current system
-        canvas.renderAnimatedSystems(systems: [largeKochIsland], generations: [4])
+        canvas.renderAnimatedSystems(systems: [sierpinski], generations: [4])
     }
     
     // Respond to the mouseDown event
